@@ -6,10 +6,11 @@
   <name>Server</name>
   <description>A project for the students' practice in the course SE2, NJU</description>
   <dependencies>
-  <dependency>
+  <!-- https://mvnrepository.com/artifact/junit/junit -->
+<dependency>
     <groupId>junit</groupId>
     <artifactId>junit</artifactId>
     <version>4.12</version>
-  </dependency>
+</dependency>
   </dependencies>
 </project>
