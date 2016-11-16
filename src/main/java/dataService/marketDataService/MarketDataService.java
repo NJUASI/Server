@@ -1,12 +1,13 @@
 package dataService.marketDataService;
 
-import po.HotelPO;
+import java.util.List;
+
 import po.MarketPO;
 import utilities.ResultMessage;
 
 public interface MarketDataService {
 	
-	public MarketPO getMemberFormulation();
+	public List<MarketPO> getMemberFormulation();
 	
-	public ResultMessage setMemberFormulation (HotelPO hotelInfoPO);
+	public ResultMessage setMemberFormulation (List<MarketPO> marketPOList);
 }

@@ -1,5 +1,6 @@
 package dataService.orderDataService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import po.OrderGeneralPO;
@@ -10,13 +11,17 @@ public interface OrderDataService {
 	
 	public ResultMessage createOrder (OrderPO order);
 	
-	public OrderPO  getOrderDetail (String orderID);
+	public ResultMessage executeOrder (String orderID);
+	
+	public OrderPO getOrderDetail (String orderID);
 	
 	public List<OrderGeneralPO> getAllGuestOrderGeneral (String GuestID);
 	
 	public List<OrderGeneralPO> getAllHotelOrderGeneral (String GuestID);
 	
-	public ResultMessage executeOrder (String orderID);
+	public List<OrderGeneralPO> getAllAbnormalOrderGeneral (LocalDate date);
+	
+	public List<OrderGeneralPO> getAllAbnormalOrderGeneral ();
 	
 	public ResultMessage undoAbnormalOrder (String orderID);
 	

@@ -7,11 +7,13 @@ import utilities.ResultMessage;
 
 public interface WebManagerDataService {
 
-	public WebManagerPO getSingle (String webManagerID);
+	public WebManagerPO getSingle(String webManagerID);
 	
-	public List<WebManagerPO> getAllWebManager ();
+	public List<WebManagerPO> getAllWebManager();
 
 	public ResultMessage add(WebManagerPO newWebManagerPO);
 
-	public ResultMessage modify (WebManagerPO webManagerPO);
+	public ResultMessage modify(WebManagerPO webManagerPO);
+	
+	public ResultMessage init();
 }

@@ -16,27 +16,29 @@ import utilities.RoomType;
 
 public interface HotelDataService {
 
-	public List<HotelGeneralPO> getHotelList(AddressPO addressPO);
-	
-	public HotelPO getHotelDetail(String hotelID);
-
-	public ResultMessage addEvaluation (EvaluationPO evaluationPO);
-	
 	public HotelPO getHotelInfo (String hotelID);
 	
-	public ResultMessage setHotelInfo(HotelPO hotelInfoPO);
+	public ResultMessage setHotelInfo(HotelPO hotelPO);
 	
-	public RoomInfoPO getHotelRoomInfo(String hotelID);
+	public List<RoomInfoPO> getHotelRoomInfo(String hotelID);
 	
-	public ResultMessage setHotelRoomInfo(RoomInfoPO hotelRoomInfoPO);
+	public ResultMessage setHotelRoomInfo(List<RoomInfoPO> list);
 	
-	public ResultMessage setCheckInInfo (CheckInPO checkInInfo);
+	public ResultMessage setCheckInInfo (CheckInPO checkInPO);
 	
-	public ResultMessage setCheckOutInfo (CheckOutPO checkOutInfo);
+	public ResultMessage setCheckOutInfo (CheckOutPO checkOutPO);
 	
 	public List<RoomInfoPO> getRemainRoomInfo(String hotelID);
 	
 	public ResultMessage setRemainRoomInfo(String hotelID, Operation operation, Map<RoomType, Integer> roomInfo);
 	
-	public ResultMessage add (HotelPO hotelInfoPO);
+	public ResultMessage add (HotelPO hotelPO);
+	
+	
+	
+	public List<HotelGeneralPO> getHotelList(AddressPO addressPO);
+	
+	public HotelPO getHotelDetail(String hotelID);
+
+	public ResultMessage addEvaluation (EvaluationPO evaluationPO);
 }
