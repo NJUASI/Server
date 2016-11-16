@@ -1,7 +1,7 @@
 package dataService.hotelDataService;
 
-
 import java.util.List;
+import java.util.Map;
 
 import po.AddressPO;
 import po.CheckInPO;
@@ -10,6 +10,9 @@ import po.EvaluationPO;
 import po.HotelGeneralPO;
 import po.HotelPO;
 import po.RoomInfoPO;
+import utilities.Operation;
+import utilities.ResultMessage;
+import utilities.RoomType;
 
 public interface HotelDataService {
 
@@ -17,23 +20,23 @@ public interface HotelDataService {
 	
 	public HotelPO getHotelDetail(String hotelID);
 
-	public boolean addEvaluation (EvaluationPO evaluationPO);
+	public ResultMessage addEvaluation (EvaluationPO evaluationPO);
 	
 	public HotelPO getHotelInfo (String hotelID);
 	
-	public boolean setHotelInfo(HotelPO hotelInfoPO);
+	public ResultMessage setHotelInfo(HotelPO hotelInfoPO);
 	
 	public RoomInfoPO getHotelRoomInfo(String hotelID);
 	
-	public boolean setHotelRoomInfo(RoomInfoPO hotelRoomInfoPO);
+	public ResultMessage setHotelRoomInfo(RoomInfoPO hotelRoomInfoPO);
 	
-	public boolean setCheckInInfo (CheckInPO checkInInfo);
+	public ResultMessage setCheckInInfo (CheckInPO checkInInfo);
 	
-	public boolean setCheckOutInfo (CheckOutPO checkOutInfo);
+	public ResultMessage setCheckOutInfo (CheckOutPO checkOutInfo);
 	
-	public RoomInfoPO getRemainRoomInfo(String hotelID);
+	public List<RoomInfoPO> getRemainRoomInfo(String hotelID);
 	
-	public boolean setRemainRoomInfo(RoomInfoPO remainRoomInfoPO);
+	public ResultMessage setRemainRoomInfo(String hotelID, Operation operation, Map<RoomType, Integer> roomInfo);
 	
-	public boolean add (HotelPO hotelInfoPO);
+	public ResultMessage add (HotelPO hotelInfoPO);
 }

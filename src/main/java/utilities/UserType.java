@@ -1,5 +1,5 @@
 package utilities;
 
 public enum UserType {
-   GUEST,HOTELWORKER,WEBMARKET,WEBMANAGER
+   GUEST, HOTEL_WORKER, WEB_MARKETER, WEB_MANAGER;
 }

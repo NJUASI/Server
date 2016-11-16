@@ -1,14 +1,15 @@
 package po;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class CheckInPO {
 
 	//	订单编号
 	private String orderID;
 	
-	//	房间号
-	private String roomNumber;
+	//	房间号的集合
+	private List<String> roomNumberList;
 	
 	//	入住时间
 	private LocalDateTime checkInTime;	
@@ -16,9 +17,9 @@ public class CheckInPO {
 	//	预计离开时间
 	private LocalDateTime expectLeaveTime;
 	
-	public CheckInPO(String orderID, String roomNumber, LocalDateTime checkInTime, LocalDateTime expectLeaveTime) {
+	public CheckInPO(String orderID, List<String> roomNumberList, LocalDateTime checkInTime, LocalDateTime expectLeaveTime) {
 		this.orderID = orderID;
-		this.roomNumber = roomNumber;
+		this.roomNumberList = roomNumberList;
 		this.checkInTime = checkInTime;
 		this.expectLeaveTime = expectLeaveTime;
 	}
@@ -29,11 +30,11 @@ public class CheckInPO {
 	public void setOrderID(String orderID) {
 		this.orderID = orderID;
 	}
-	public String getRoomNumber() {
-		return roomNumber;
+	public List<String> getRoomNumber() {
+		return roomNumberList;
 	}
-	public void setRoomNumber(String roomNumber) {
-		this.roomNumber = roomNumber;
+	public void setRoomNumber(List<String> roomNumberList) {
+		this.roomNumberList = roomNumberList;
 	}
 	public LocalDateTime getCheckInTime() {
 		return checkInTime;
