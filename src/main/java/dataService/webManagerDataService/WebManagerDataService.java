@@ -1,19 +1,20 @@
 package dataService.webManagerDataService;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.List;
 
 import po.WebManagerPO;
 import utilities.ResultMessage;
 
-public interface WebManagerDataService {
+public interface WebManagerDataService extends Remote{
 
-	public WebManagerPO getSingle(String webManagerID);
+	public WebManagerPO getSingle(String webManagerID) throws RemoteException;
 	
-	public List<WebManagerPO> getAllWebManager();
+	public List<WebManagerPO> getAllWebManager() throws RemoteException;
 
-	public ResultMessage add(WebManagerPO newWebManagerPO);
+	public ResultMessage add(WebManagerPO newWebManagerPO) throws RemoteException;
 
-	public ResultMessage modify(WebManagerPO webManagerPO);
+	public ResultMessage modify(WebManagerPO webManagerPO) throws RemoteException;
 	
-	public ResultMessage init();
 }

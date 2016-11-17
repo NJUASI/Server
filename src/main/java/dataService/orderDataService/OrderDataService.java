@@ -1,5 +1,7 @@
 package dataService.orderDataService;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -7,23 +9,23 @@ import po.OrderGeneralPO;
 import po.OrderPO;
 import utilities.ResultMessage;
 
-public interface OrderDataService {
+public interface OrderDataService extends Remote{
 	
-	public ResultMessage createOrder (OrderPO order);
+	public ResultMessage createOrder (OrderPO order) throws RemoteException;
 	
-	public ResultMessage executeOrder (String orderID);
+	public ResultMessage executeOrder (String orderID) throws RemoteException;
 	
-	public OrderPO getOrderDetail (String orderID);
+	public OrderPO getOrderDetail (String orderID) throws RemoteException;
 	
-	public List<OrderGeneralPO> getAllGuestOrderGeneral (String GuestID);
+	public List<OrderGeneralPO> getAllGuestOrderGeneral (String GuestID) throws RemoteException;
 	
-	public List<OrderGeneralPO> getAllHotelOrderGeneral (String GuestID);
+	public List<OrderGeneralPO> getAllHotelOrderGeneral (String GuestID) throws RemoteException;
 	
-	public List<OrderGeneralPO> getAllAbnormalOrderGeneral (LocalDate date);
+	public List<OrderGeneralPO> getAllAbnormalOrderGeneral (LocalDate date) throws RemoteException;
 	
-	public List<OrderGeneralPO> getAllAbnormalOrderGeneral ();
+	public List<OrderGeneralPO> getAllAbnormalOrderGeneral () throws RemoteException;
 	
-	public ResultMessage undoAbnormalOrder (String orderID);
+	public ResultMessage undoAbnormalOrder (String orderID) throws RemoteException;
 	
-	public ResultMessage undoNormalOrder (String orderID);
+	public ResultMessage undoNormalOrder (String orderID) throws RemoteException;
 }

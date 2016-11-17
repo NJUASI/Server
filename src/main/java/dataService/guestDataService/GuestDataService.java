@@ -1,5 +1,7 @@
 package dataService.guestDataService;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.List;
 
 import po.CreditPO;
@@ -7,19 +9,18 @@ import po.GuestPO;
 import po.MemberPO;
 import utilities.ResultMessage;
 
-public interface GuestDataService {
+public interface GuestDataService extends Remote{
 	
-	public GuestPO getSingle(String guestID);
+	public GuestPO getSingle(String guestID) throws RemoteException;
 	
-	public List<GuestPO> getAllGuest();
+	public List<GuestPO> getAllGuest() throws RemoteException;
 
-	public List<CreditPO> getAllCreditDetail(String guestID);
+	public List<CreditPO> getAllCreditDetail(String guestID) throws RemoteException;
 	
-	public ResultMessage add(GuestPO newGuestPO);
+	public ResultMessage add(GuestPO newGuestPO) throws RemoteException;
 
-	public ResultMessage modifyMember(MemberPO memberPO);
+	public ResultMessage modifyMember(MemberPO memberPO) throws RemoteException;
 
-	public ResultMessage modify(GuestPO guestPO);
+	public ResultMessage modify(GuestPO guestPO) throws RemoteException;
 	
-	public ResultMessage init();
 }
