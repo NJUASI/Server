@@ -1,11 +1,17 @@
 package po;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import utilities.PromotionType;
 
-public abstract class PromotionPO {
+public abstract class PromotionPO implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6623796937959462981L;
+
 	//	折扣类型
 	private PromotionType promotionType;
 	

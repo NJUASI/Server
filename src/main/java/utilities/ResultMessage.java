@@ -1,5 +1,7 @@
 package utilities;
 
-public enum ResultMessage {	
+import java.io.Serializable;
+
+public enum ResultMessage implements Serializable{	
 	SUCCESS, FAIL;
 }

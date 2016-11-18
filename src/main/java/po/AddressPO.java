@@ -1,6 +1,13 @@
 package po;
 
-public class AddressPO {
+import java.io.Serializable;
+
+public class AddressPO implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3626389844005279945L;
 
 	//	酒店所属城市
 	public String city;
