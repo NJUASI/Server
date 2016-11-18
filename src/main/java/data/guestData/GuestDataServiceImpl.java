@@ -20,7 +20,7 @@ public class GuestDataServiceImpl extends UnicastRemoteObject implements GuestDa
 	}
 
 	@Override
-	public GuestPO getSingle(String guestID) throws RemoteException {
+	public GuestPO getSingleGuest(String guestID) throws RemoteException {
 		return null;
 	}
 

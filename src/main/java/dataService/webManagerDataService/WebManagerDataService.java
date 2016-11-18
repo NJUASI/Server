@@ -9,7 +9,7 @@ import utilities.ResultMessage;
 
 public interface WebManagerDataService extends Remote{
 
-	public WebManagerPO getSingle(String webManagerID) throws RemoteException;
+	public WebManagerPO getSingleWebManager(String webManagerID) throws RemoteException;
 	
 	public List<WebManagerPO> getAllWebManager() throws RemoteException;
 

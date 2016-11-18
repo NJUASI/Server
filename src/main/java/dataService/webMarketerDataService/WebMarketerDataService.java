@@ -9,7 +9,7 @@ import utilities.ResultMessage;
 
 public interface WebMarketerDataService extends Remote{
 
-	public WebMarketerPO getSingle (String webMarketID) throws RemoteException;
+	public WebMarketerPO getSingleWebMarketer (String webMarketID) throws RemoteException;
 	
 	public List<WebMarketerPO> getAllWebMarketer () throws RemoteException;
 
@@ -17,5 +17,5 @@ public interface WebMarketerDataService extends Remote{
 
 	public ResultMessage modify (WebMarketerPO webMarketerPO) throws RemoteException;
 
-	public ResultMessage init() throws RemoteException;
+	public ResultMessage initWebMarketer() throws RemoteException;
 }
