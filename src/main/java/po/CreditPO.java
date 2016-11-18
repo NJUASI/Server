@@ -1,9 +1,15 @@
 package po;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class CreditPO {
+public class CreditPO implements Serializable{
     
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3755463324226710790L;
+
 	//	用户编号	
 	private String guestID;
 	

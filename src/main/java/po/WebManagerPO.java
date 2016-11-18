@@ -1,7 +1,14 @@
 package po;
 
-public class WebManagerPO {
+import java.io.Serializable;
+
+public class WebManagerPO implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3713445002016120118L;
+
 	//	管理人员编号
 	private String userID;
 	

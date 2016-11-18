@@ -1,7 +1,14 @@
 package po;
 
-public class HotelWorkerPO {
+import java.io.Serializable;
+
+public class HotelWorkerPO implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5089581683128327676L;
+
 	//	酒店编号
 	private String hotelID;
 	

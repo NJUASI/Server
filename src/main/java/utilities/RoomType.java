@@ -1,5 +1,7 @@
 package utilities;
 
-public enum RoomType {
+import java.io.Serializable;
+
+public enum RoomType implements Serializable{
 	SINGLEBED, DOUBLEBED, DELUXE, PREMIER, AMBASSADOR, IMPERIAL;
 }

@@ -1,6 +1,13 @@
 package po;
 
-public class MarketPO {
+import java.io.Serializable;
+
+public class MarketPO implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7795676331405404584L;
 
 	//	等级名称
 	private String marketName;

@@ -1,6 +1,13 @@
 package po;
 
-public class EvaluationPO {
+import java.io.Serializable;
+
+public class EvaluationPO implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7207366321921809864L;
 
 	//	订单编号
 	private String orderID;

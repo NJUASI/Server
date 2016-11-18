@@ -1,8 +1,14 @@
 package po;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class CheckOutPO {
+public class CheckOutPO implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8650256015779165482L;
 
 	//	订单编号
 	private String orderID;
