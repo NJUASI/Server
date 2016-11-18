@@ -38,9 +38,9 @@ public interface HotelDataService extends Remote{
 	
 	
 	
-	public List<HotelGeneralPO> getHotelList(AddressPO addressPO);
+	public List<HotelGeneralPO> getHotelList(AddressPO addressPO) throws RemoteException;
 	
-	public HotelPO getHotelDetail(String hotelID);
+	public HotelPO getHotelDetail(String hotelID) throws RemoteException;
 
-	public ResultMessage addEvaluation (EvaluationPO evaluationPO);
+	public ResultMessage addEvaluation (EvaluationPO evaluationPO) throws RemoteException;
 }

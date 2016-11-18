@@ -18,7 +18,7 @@ public class WebManagerDataServiceImpl extends UnicastRemoteObject implements We
 	}
 
 	@Override
-	public WebManagerPO getSingle(String webManagerID) throws RemoteException {
+	public WebManagerPO getSingleWebManager(String webManagerID) throws RemoteException {
 		return null;
 	}
 

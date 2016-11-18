@@ -18,7 +18,7 @@ public class HotelWorkerDataServiceImpl extends UnicastRemoteObject implements H
 	}
 
 	@Override
-	public HotelWorkerPO getSingle(String hotelWorkerID) throws RemoteException {
+	public HotelWorkerPO getSingleHotelWorker(String hotelWorkerID) throws RemoteException {
 		return null;
 	}
 
@@ -38,7 +38,7 @@ public class HotelWorkerDataServiceImpl extends UnicastRemoteObject implements H
 	}
 
 	@Override
-	public ResultMessage init() throws RemoteException {
+	public ResultMessage initHotelWorker() throws RemoteException {
 		return null;
 	}
 

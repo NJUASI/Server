@@ -18,7 +18,7 @@ public class WebMarketerDataServiceImpl extends UnicastRemoteObject implements W
 	}
 
 	@Override
-	public WebMarketerPO getSingle(String webMarketID) throws RemoteException {
+	public WebMarketerPO getSingleWebMarketer(String webMarketID) throws RemoteException {
 		return null;
 	}
 
@@ -38,7 +38,7 @@ public class WebMarketerDataServiceImpl extends UnicastRemoteObject implements W
 	}
 
 	@Override
-	public ResultMessage init() throws RemoteException {
+	public ResultMessage initWebMarketer() throws RemoteException {
 		return null;
 	}
 
