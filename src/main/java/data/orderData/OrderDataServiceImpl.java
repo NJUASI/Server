@@ -64,4 +64,9 @@ public class OrderDataServiceImpl extends UnicastRemoteObject implements OrderDa
 		return null;
 	}
 
+	@Override
+	public List<String> getBookedHotels(String guestID) throws RemoteException {
+		return null;
+	}
+
 }
