@@ -1,15 +1,8 @@
 package dataHelperImpl;
 
 import dataHelper.DataHelper;
-import dataHelper.GetAllDataHelper;
 
-public class GuestDataHelperImpl implements DataHelper, GetAllDataHelper{
-
-	@Override
-	public Object getAll(Object object) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+public class CheckOutDataHelperImpl implements DataHelper{
 
 	@Override
 	public Object add(Object object) {

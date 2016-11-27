@@ -3,7 +3,7 @@ package dataHelperImpl;
 import dataHelper.DataHelper;
 import dataHelper.GetAllDataHelper;
 
-public class GuestDataHelperImpl implements DataHelper, GetAllDataHelper{
+public class EvaluationDataHelperImpl implements DataHelper, GetAllDataHelper{
 
 	@Override
 	public Object getAll(Object object) {

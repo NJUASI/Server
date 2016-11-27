@@ -1,9 +1,16 @@
 package dataHelperImpl;
 
 import dataHelper.DataHelper;
+import dataHelper.DeleteDataHelper;
 import dataHelper.GetAllDataHelper;
 
-public class GuestDataHelperImpl implements DataHelper, GetAllDataHelper{
+public class RoomInfoDataHelperImpl implements DataHelper, GetAllDataHelper, DeleteDataHelper{
+
+	@Override
+	public Object delete(Object object) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public Object getAll(Object object) {

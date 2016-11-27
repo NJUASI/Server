@@ -1,33 +1,30 @@
 package dataHelperImpl;
 
-import java.util.List;
+import dataHelper.DataHelper;
+import dataHelper.GetAllDataHelper;
 
-import dataHelper.WebManagerDataHelper;
-import po.WebManagerPO;
-import utilities.ResultMessage;
-
-public class WebManagerDataHelperImpl implements WebManagerDataHelper{
+public class WebManagerDataHelperImpl implements DataHelper, GetAllDataHelper{
 
 	@Override
-	public WebManagerPO getSingle(String webManagerID) {
+	public Object getAll(Object object) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<WebManagerPO> getAll() {
+	public Object add(Object object) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ResultMessage add(WebManagerPO newWebManagerPO) {
+	public Object modify(Object object) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ResultMessage modify(WebManagerPO webManagerPO) {
+	public Object getSingle(Object object) {
 		// TODO Auto-generated method stub
 		return null;
 	}

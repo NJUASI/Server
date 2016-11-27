@@ -1,39 +1,37 @@
 package dataHelperImpl;
 
-import java.util.List;
+import dataHelper.DataHelper;
+import dataHelper.DeleteDataHelper;
+import dataHelper.GetAllDataHelper;
 
-import dataHelper.WebMarketerDataHelper;
-import po.WebMarketerPO;
-import utilities.ResultMessage;
-
-public class WebMarketerDataHelperImpl implements WebMarketerDataHelper{
+public class WebMarketerDataHelperImpl implements DataHelper, GetAllDataHelper, DeleteDataHelper{
 
 	@Override
-	public WebMarketerPO getSingle(String webMarketID) {
+	public Object delete(Object object) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<WebMarketerPO> getAll() {
+	public Object getAll(Object object) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ResultMessage add(WebMarketerPO newWebMarketerPO) {
+	public Object add(Object object) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ResultMessage modify(WebMarketerPO webMarketerPO) {
+	public Object modify(Object object) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ResultMessage init() {
+	public Object getSingle(Object object) {
 		// TODO Auto-generated method stub
 		return null;
 	}

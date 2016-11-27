@@ -1,4 +1,4 @@
-package utilities.jdbc;
+package utilities;
 
 import java.io.IOException;
 import java.sql.Connection;
