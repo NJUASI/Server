@@ -1,6 +1,13 @@
-/po/
-/utilities/
-/rmi/
+/GuestDataHelper.class
+/HotelDataHelper.class
+/HotelWorkerDataHelper.class
+/MarketDataHelper.class
+/OrderDataHelper.class
+/WebManagerDataHelper.class
+/WebMarketerDataHelper.class
+/impl/
 /data/
+/dataServiceImpl/
+/rmi/
 /dataHelper/
-/HotelDataHelperImpl/
+/dataHelperImpl/

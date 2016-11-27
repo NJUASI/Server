@@ -1,4 +1,4 @@
-package data.dataHelper;
+package dataHelper;
 
 public interface HotelDataHelper {
 
