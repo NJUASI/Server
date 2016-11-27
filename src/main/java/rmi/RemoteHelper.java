@@ -6,14 +6,18 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
-import data.guestData.GuestDataServiceImpl;
-import data.hotelData.HotelDataServiceImpl;
-import data.hotelWorkerData.HotelWorkerDataServiceImpl;
-import data.marketData.MarketDataServiceImpl;
-import data.orderData.OrderDataServiceImpl;
-import data.promotionData.PromotionDataServiceImpl;
-import data.webManagerData.WebManagerDataServiceImpl;
-import data.webMarketerData.WebMarketerDataServiceImpl;
+import data.dataServiceImpl.GuestDataServiceImpl;
+import data.dataServiceImpl.HotelDataServiceImpl;
+import data.dataServiceImpl.HotelWorkerDataServiceImpl;
+import data.dataServiceImpl.MarketDataServiceImpl;
+import data.dataServiceImpl.OrderDataServiceImpl;
+import data.dataServiceImpl.PromotionDataServiceImpl;
+import data.dataServiceImpl.WebManagerDataServiceImpl;
+import data.dataServiceImpl.WebMarketerDataServiceImpl;
+
+
+
+
 
 public class RemoteHelper {
 
