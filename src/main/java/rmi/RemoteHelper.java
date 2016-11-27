@@ -6,14 +6,14 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 
-import data.dataServiceImpl.GuestDataServiceImpl;
-import data.dataServiceImpl.HotelDataServiceImpl;
-import data.dataServiceImpl.HotelWorkerDataServiceImpl;
-import data.dataServiceImpl.MarketDataServiceImpl;
-import data.dataServiceImpl.OrderDataServiceImpl;
-import data.dataServiceImpl.PromotionDataServiceImpl;
-import data.dataServiceImpl.WebManagerDataServiceImpl;
-import data.dataServiceImpl.WebMarketerDataServiceImpl;
+import dataServiceImpl.GuestDataServiceImpl;
+import dataServiceImpl.HotelDataServiceImpl;
+import dataServiceImpl.HotelWorkerDataServiceImpl;
+import dataServiceImpl.MarketDataServiceImpl;
+import dataServiceImpl.OrderDataServiceImpl;
+import dataServiceImpl.PromotionDataServiceImpl;
+import dataServiceImpl.WebManagerDataServiceImpl;
+import dataServiceImpl.WebMarketerDataServiceImpl;
 
 
 

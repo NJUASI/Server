@@ -1,8 +1,8 @@
-package data.dataHelper.impl;
+package dataHelperImpl;
 
 import java.util.List;
 
-import data.dataHelper.WebManagerDataHelper;
+import dataHelper.WebManagerDataHelper;
 import po.WebManagerPO;
 import utilities.ResultMessage;
 

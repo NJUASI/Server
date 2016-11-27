@@ -1,33 +1,33 @@
-package data.dataHelper.impl;
+package dataHelperImpl;
 
 import java.util.List;
 
-import data.dataHelper.WebMarketerDataHelper;
-import po.WebMarketerPO;
+import dataHelper.HotelWorkerDataHelper;
+import po.HotelWorkerPO;
 import utilities.ResultMessage;
 
-public class WebMarketerDataHelperImpl implements WebMarketerDataHelper{
+public class HotelWorkerDataHelperImpl implements HotelWorkerDataHelper{
 
 	@Override
-	public WebMarketerPO getSingle(String webMarketID) {
+	public HotelWorkerPO getSingle(String hotelWorkerID) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<WebMarketerPO> getAll() {
+	public List<HotelWorkerPO> getAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ResultMessage add(WebMarketerPO newWebMarketerPO) {
+	public ResultMessage add(HotelWorkerPO newHotelWorkerPO) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ResultMessage modify(WebMarketerPO webMarketerPO) {
+	public ResultMessage modify(HotelWorkerPO hotelWorkerPO) {
 		// TODO Auto-generated method stub
 		return null;
 	}

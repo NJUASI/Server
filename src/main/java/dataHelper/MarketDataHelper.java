@@ -1,4 +1,4 @@
-package data.dataHelper;
+package dataHelper;
 
 import java.util.List;
 

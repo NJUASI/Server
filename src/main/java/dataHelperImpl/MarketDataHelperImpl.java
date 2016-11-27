@@ -1,8 +1,8 @@
-package data.dataHelper.impl;
+package dataHelperImpl;
 
 import java.util.List;
 
-import data.dataHelper.MarketDataHelper;
+import dataHelper.MarketDataHelper;
 import po.MarketPO;
 import utilities.ResultMessage;
 

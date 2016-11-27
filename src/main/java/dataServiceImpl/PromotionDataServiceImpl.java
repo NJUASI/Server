@@ -1,4 +1,4 @@
-package data.dataServiceImpl;
+package dataServiceImpl;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
