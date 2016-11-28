@@ -1,73 +1,51 @@
 package dataHelperImpl;
 
-import java.time.LocalDate;
-import java.util.List;
+import dataHelper.DataHelper;
+import dataHelper.DeleteDataHelper;
+import dataHelper.GetAllDataHelper;
 
-import dataHelper.OrderDataHelper;
-import po.OrderGeneralPO;
-import po.OrderPO;
-import utilities.ResultMessage;
-
-public class OrderDataHelperImpl implements OrderDataHelper{
+public class OrderDataHelperImpl implements DataHelper, GetAllDataHelper, DeleteDataHelper{
 
 	@Override
-	public ResultMessage createOrder(OrderPO order) {
+	public Object delete(Object object) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ResultMessage executeOrder(String orderID) {
+	public Object getAll(Object object) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public OrderPO getOrderDetail(String orderID) {
+	public Object add(Object object) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<OrderGeneralPO> getAllGuestOrderGeneral(String GuestID) {
+	public Object modify(Object object) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<OrderGeneralPO> getAllHotelOrderGeneral(String GuestID) {
+	public Object getSingle(Object object) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<OrderGeneralPO> getAllAbnormalOrderGeneral(LocalDate date) {
+	public Object getAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<OrderGeneralPO> getAllAbnormalOrderGeneral() {
+	public void close() {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ResultMessage undoAbnormalOrder(String orderID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ResultMessage undoNormalOrder(String orderID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<String> getBookedHotels(String guestID) {
-		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 }

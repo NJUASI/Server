@@ -1,41 +1,51 @@
 package dataHelperImpl;
 
-import java.util.List;
+import dataHelper.DataHelper;
+import dataHelper.DeleteDataHelper;
+import dataHelper.GetAllDataHelper;
 
-import dataHelper.HotelWorkerDataHelper;
-import po.HotelWorkerPO;
-import utilities.ResultMessage;
-
-public class HotelWorkerDataHelperImpl implements HotelWorkerDataHelper{
+public class HotelWorkerDataHelperImpl implements DataHelper, GetAllDataHelper, DeleteDataHelper{
 
 	@Override
-	public HotelWorkerPO getSingle(String hotelWorkerID) {
+	public Object delete(Object object) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<HotelWorkerPO> getAll() {
+	public Object getAll(Object object) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ResultMessage add(HotelWorkerPO newHotelWorkerPO) {
+	public Object add(Object object) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ResultMessage modify(HotelWorkerPO hotelWorkerPO) {
+	public Object modify(Object object) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ResultMessage init() {
+	public Object getSingle(Object object) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Object getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void close() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

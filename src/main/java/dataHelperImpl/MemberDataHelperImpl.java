@@ -1,16 +1,9 @@
 package dataHelperImpl;
 
 import dataHelper.DataHelper;
-import dataHelper.DeleteDataHelper;
 import dataHelper.GetAllDataHelper;
 
-public class WebMarketerDataHelperImpl implements DataHelper, GetAllDataHelper, DeleteDataHelper{
-
-	@Override
-	public Object delete(Object object) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+public class MemberDataHelperImpl implements DataHelper, GetAllDataHelper{
 
 	@Override
 	public Object getAll(Object object) {

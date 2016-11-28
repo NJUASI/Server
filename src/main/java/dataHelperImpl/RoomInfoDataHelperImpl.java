@@ -4,7 +4,7 @@ import dataHelper.DataHelper;
 import dataHelper.DeleteDataHelper;
 import dataHelper.GetAllDataHelper;
 
-public class WebMarketerDataHelperImpl implements DataHelper, GetAllDataHelper, DeleteDataHelper{
+public class RoomInfoDataHelperImpl implements DataHelper, GetAllDataHelper, DeleteDataHelper{
 
 	@Override
 	public Object delete(Object object) {
