@@ -22,4 +22,10 @@ public class CreditDataHelperImpl implements DataHelper{
 		return null;
 	}
 
+	@Override
+	public void close() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

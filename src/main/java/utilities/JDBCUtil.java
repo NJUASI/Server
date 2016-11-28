@@ -3,11 +3,11 @@ package utilities;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import com.mysql.cj.api.jdbc.Statement;
 
 public class JDBCUtil {
 	
@@ -34,7 +34,7 @@ public class JDBCUtil {
 			}
 	}
 	
-	public static void close(ResultSet rs, Statement ps, Connection conn){
+	public static void close(ResultSet rs, PreparedStatement ps, Connection conn){
 		try{
 			if(ps!=null){
 				ps.close();
@@ -58,6 +58,25 @@ public class JDBCUtil {
 		} catch (SQLException e){
 			e.printStackTrace();
 		}
+	}
+	
+	public static void close(ResultSet rs, PreparedStatement ps){
+		try{
+			if(ps!=null){
+				ps.close();
+			}
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+		
+		try{
+			if(rs!=null){
+				rs.close();
+			}
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+		
 	}
 
 }

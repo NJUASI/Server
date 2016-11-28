@@ -29,4 +29,16 @@ public class WebManagerDataHelperImpl implements DataHelper, GetAllDataHelper{
 		return null;
 	}
 
+	@Override
+	public Object getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void close() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

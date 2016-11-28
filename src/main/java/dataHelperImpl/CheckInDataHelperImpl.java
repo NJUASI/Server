@@ -22,4 +22,10 @@ public class CheckInDataHelperImpl implements DataHelper{
 		return null;
 	}
 
+	@Override
+	public void close() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

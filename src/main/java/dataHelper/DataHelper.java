@@ -7,4 +7,6 @@ public interface DataHelper {
 	public Object modify(Object object);
 	
 	public Object getSingle(Object object);
+	
+	public void close();
 }

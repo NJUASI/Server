@@ -34,6 +34,8 @@ public class GuestPO implements Serializable{
 	//	信用值
 	private double credit;
 	
+	public GuestPO(){};
+	
 	public GuestPO(String guestID, LocalDate birthday, String enterprise, String name, String nickName,
 			String password, String phone, double credit) {
 		super();
