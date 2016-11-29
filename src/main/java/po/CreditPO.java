@@ -17,7 +17,7 @@ public class CreditPO implements Serializable{
 	private LocalDateTime time;
 	
 	//	订单编号
-	private String orderID;
+	private int orderID;
 	
 	//	变化前信用值
 	private double previousCredit;
@@ -28,7 +28,7 @@ public class CreditPO implements Serializable{
 	//	变化原因 即动作
 	private String reason;
 	
-	public CreditPO(String guestID, LocalDateTime time, String orderID, double previousCredit, double afterCredit, String reason) {
+	public CreditPO(String guestID, LocalDateTime time, int orderID, double previousCredit, double afterCredit, String reason) {
 		this.guestID = guestID;
 		this.time = time;
 		this.orderID = orderID;
@@ -53,11 +53,11 @@ public class CreditPO implements Serializable{
 		this.time = time;
 	}
 
-	public String getOrderID() {
+	public int getOrderID() {
 		return orderID;
 	}
 
-	public void setOrderID(String orderID) {
+	public void setOrderID(int orderID) {
 		this.orderID = orderID;
 	}
 

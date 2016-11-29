@@ -14,9 +14,6 @@ public final class HotelPO implements Serializable{
 	//	酒店地址
 	private String hotelAddress;
 	
-	//	评价
-	private String comment;
-	
 	//	简介
 	private String introduction;	
 	
@@ -24,21 +21,19 @@ public final class HotelPO implements Serializable{
 	private String equipment;
 	
 	public HotelPO(String hotelID, String hotelName, String city, String cycle, String hotelAddress, 
-			String level, double score, String comment, String introduction, String equipment) {
+			String level, double score, String introduction, String equipment) {
 		this.hotelGeneralPO = new HotelGeneralPO(hotelID, hotelName, city, cycle, level, score);
 		
 		this.hotelAddress = hotelAddress;
-		this.comment = comment;
 		this.introduction = introduction;
 		this.equipment = equipment;
 	}
 	
-	public HotelPO(HotelGeneralPO hotelGeneralPO, String hotelAddress, String comment, 
+	public HotelPO(HotelGeneralPO hotelGeneralPO, String hotelAddress, 
 			String introduction, String equipment) {
 		this.hotelGeneralPO = hotelGeneralPO;
 		
 		this.hotelAddress = hotelAddress;
-		this.comment = comment;
 		this.introduction = introduction;
 		this.equipment = equipment;
 	}
@@ -90,13 +85,6 @@ public final class HotelPO implements Serializable{
 	}
 	public void setScore(double score) {
 		this.setScore(score);
-	}
-	
-	public String getComment() {
-		return comment;
-	}
-	public void setComment(String comment) {
-		this.comment = comment;
 	}
 	
 	public String getIntroduction() {
