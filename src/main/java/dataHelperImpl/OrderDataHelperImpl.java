@@ -1,51 +1,50 @@
 package dataHelperImpl;
 
-import dataHelper.DataHelper;
-import dataHelper.DeleteDataHelper;
-import dataHelper.GetAllDataHelper;
+import java.time.LocalDate;
+import java.util.List;
 
-public class OrderDataHelperImpl implements DataHelper, GetAllDataHelper, DeleteDataHelper{
+import dataHelper.OrderDataHelper;
+import po.OrderPO;
+import utilities.OrderState;
+import utilities.ResultMessage;
 
-	@Override
-	public Object delete(Object object) {
-		// TODO Auto-generated method stub
+public class OrderDataHelperImpl implements OrderDataHelper{
+
+	public ResultMessage add(OrderPO orderPO) {
 		return null;
 	}
 
-	@Override
-	public Object getAll(Object object) {
-		// TODO Auto-generated method stub
+	public ResultMessage setState(String orderID, OrderState state) {
 		return null;
 	}
 
-	@Override
-	public Object add(Object object) {
-		// TODO Auto-generated method stub
+	public ResultMessage setComment(String orderID, String comment) {
 		return null;
 	}
 
-	@Override
-	public Object modify(Object object) {
-		// TODO Auto-generated method stub
+	public OrderPO getSingleOrder(String orderID) {
 		return null;
 	}
 
-	@Override
-	public Object getSingle(Object object) {
-		// TODO Auto-generated method stub
+	public List<OrderPO> getAllOrderOfGuest(String guestID) {
 		return null;
 	}
 
-	@Override
-	public Object getAll() {
-		// TODO Auto-generated method stub
+	public List<OrderPO> getAllOrderOfHotel(String hotelID) {
 		return null;
 	}
 
-	@Override
+	public List<OrderPO> getAbnormal(LocalDate date) {
+		return null;
+	}
+
+	public List<OrderPO> getUnexecuted(LocalDate date) {
+		return null;
+	}
+
 	public void close() {
-		// TODO Auto-generated method stub
 		
 	}
 
+	
 }
