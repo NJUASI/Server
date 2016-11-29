@@ -86,7 +86,7 @@ public class GuestDataHelperImpl implements DataHelper, GetAllDataHelper{
 		GuestPO guestPO = (GuestPO)object;
 		String sql = "INSERT INTO guest(guest.guestID,guest.birthday,guest.enterprise,"
 				+ "guest.`name`,guest.nickName,guest.`password`,"
-				+ "guest.credit,guest.phone))"
+				+ "guest.credit,guest.phone)"
 				+ "values(?,?,?,?,?,?,?,?)";
 		
 		try {
@@ -145,7 +145,7 @@ public class GuestDataHelperImpl implements DataHelper, GetAllDataHelper{
 	 * @lastChangedBy 董金玉
 	 * @updateTime 2016/11/28
 	 * @param Object 应为guestID
-	 * @return Object 据库中的指定guestInfo载体
+	 * @return Object 数据库中的指定guestInfo载体
 	 */
 	public Object getSingle(Object object) {
 		String guestID  = (String)object;
