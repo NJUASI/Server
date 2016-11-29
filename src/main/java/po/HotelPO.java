@@ -14,33 +14,31 @@ public final class HotelPO implements Serializable{
 	//	酒店地址
 	private String hotelAddress;
 	
-	//	评价
-	private String comment;
-	
 	//	简介
 	private String introduction;	
 	
 	//	设施服务
 	private String equipment;
 	
+	private double minPrice;
+	
 	public HotelPO(String hotelID, String hotelName, String city, String cycle, String hotelAddress, 
-			String level, double score, String comment, String introduction, String equipment) {
+			String level, double score, String introduction, String equipment,double minPrice) {
 		this.hotelGeneralPO = new HotelGeneralPO(hotelID, hotelName, city, cycle, level, score);
 		
 		this.hotelAddress = hotelAddress;
-		this.comment = comment;
 		this.introduction = introduction;
 		this.equipment = equipment;
 	}
 	
-	public HotelPO(HotelGeneralPO hotelGeneralPO, String hotelAddress, String comment, 
-			String introduction, String equipment) {
+	public HotelPO(HotelGeneralPO hotelGeneralPO, String hotelAddress, 
+			String introduction, String equipment,double minPrice) {
 		this.hotelGeneralPO = hotelGeneralPO;
 		
 		this.hotelAddress = hotelAddress;
-		this.comment = comment;
 		this.introduction = introduction;
 		this.equipment = equipment;
+		this.minPrice = minPrice;
 	}
 	
 	public String getHotelID() {
@@ -92,13 +90,6 @@ public final class HotelPO implements Serializable{
 		this.setScore(score);
 	}
 	
-	public String getComment() {
-		return comment;
-	}
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
-	
 	public String getIntroduction() {
 		return introduction;
 	}
@@ -112,6 +103,14 @@ public final class HotelPO implements Serializable{
 	}
 	public void setEquipment(String equipment) {
 		this.equipment = equipment;
+	}
+
+	public double getMinPrice() {
+		return minPrice;
+	}
+
+	public void setMinPrice(double minPrice) {
+		this.minPrice = minPrice;
 	}
 	
 }

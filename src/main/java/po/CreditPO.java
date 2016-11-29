@@ -85,8 +85,4 @@ public class CreditPO implements Serializable{
 		this.reason = reason;
 	}
 	
-	
-	
-	
-	
 }
