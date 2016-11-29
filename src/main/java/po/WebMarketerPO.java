@@ -14,6 +14,7 @@ public class WebMarketerPO implements Serializable {
 
 	// 密码
 	private String password;
+	
 
 	public WebMarketerPO(String userID, String password) {
 		this.webMarketerID = userID;

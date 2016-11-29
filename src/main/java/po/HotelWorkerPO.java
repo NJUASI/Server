@@ -19,6 +19,8 @@ public class HotelWorkerPO implements Serializable {
 	// 酒店名称
 	private String hotelName;
 
+	public HotelWorkerPO(){}
+	
 	public HotelWorkerPO(String hotelWorkerID, String password) {
 		this.hotelWorkerID = hotelWorkerID;
 		this.password = password;
@@ -33,9 +35,10 @@ public class HotelWorkerPO implements Serializable {
 	public String getHotelWorkerID() {
 		return hotelWorkerID;
 	}
-	// public void setHotelID(String hotelID) {
-	// this.hotelID = hotelID;
-	// }
+	
+	 public void setHotelWorkerID(String hotelWorkerID) {
+	 this.hotelWorkerID = hotelWorkerID;
+	 }
 
 	public String getPassword() {
 		return password;
