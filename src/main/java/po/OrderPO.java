@@ -170,7 +170,7 @@ public class OrderPO implements Serializable{
 		return orderGeneralPO.getState();
 	}
 
-	public void setState(String state) {
+	public void setState(OrderState state) {
 		this.setState(state);
 	}
 	
@@ -181,8 +181,6 @@ public class OrderPO implements Serializable{
 	public void setExpectLeaveTime(LocalDateTime expectLeaveTime) {
 		this.setExpectLeaveTime(expectLeaveTime);
 	}
-	
-	
 	
 	public LocalDateTime getCreateTime() {
 		return createTime;

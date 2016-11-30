@@ -73,11 +73,11 @@ public class AddressDataHelperImpl implements AddressDataHelper {
 
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, city);
+			ps.setString(1, city); //对应问号的位置
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				result.add(rs.getString(1));
+				result.add(rs.getString(1)); //对应表项的位置
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -99,7 +99,7 @@ public class AddressDataHelperImpl implements AddressDataHelper {
 
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, city);
+			ps.setString(1, city); //对应问号的位置
 			ps.setString(2, cycle);
 			rs = ps.executeQuery();
 
@@ -129,6 +129,7 @@ public class AddressDataHelperImpl implements AddressDataHelper {
 
 			while (rs.next()) {
 				final AddressPO addressPO = new AddressPO(rs.getString(1), rs.getString(2), rs.getDouble(3));
+				//此处硬编码对应表项的位置，已确定
 				result.add(addressPO);
 			}
 
@@ -152,7 +153,7 @@ public class AddressDataHelperImpl implements AddressDataHelper {
 
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setDouble(1, discout);
+			ps.setDouble(1, discout); //此处硬编码对应问号的位置
 			ps.setString(2, city);
 			ps.setString(3, cycle);
 
@@ -185,6 +186,7 @@ public class AddressDataHelperImpl implements AddressDataHelper {
 	 */
 	private List<String> deletDuplicate(List<String> list) {
 
+		//判断相邻元素是否重复，重复则删除
 		for (int i = 0; i < list.size() - 1;) {
 			if (list.get(i).equals(list.get(i + 1))) {
 				list.remove(i + 1);

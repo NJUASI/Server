@@ -49,7 +49,7 @@ public class HotelWorkerDataHelperImpl implements HotelWorkerDataHelper {
 
 		try {
 			ps = conn.prepareStatement(sql); // 插入数据的准备工作，1-3对应sql语句中问号的顺序
-			ps.setString(1, hotelWorkerPO.getHotelWorkerID());
+			ps.setInt(1, Integer.parseInt(hotelWorkerPO.getHotelWorkerID()));
 			ps.setString(2, hotelWorkerPO.getHotelName()); // 在使用setObject方法是必须注意，我们应该使用对应数据类型
 			ps.setString(3, hotelWorkerPO.getPassword()); // 虽然Object可以替代所有该set方法，但会影响效率所以尽量使用对应数据类型的set方法
 
@@ -69,13 +69,13 @@ public class HotelWorkerDataHelperImpl implements HotelWorkerDataHelper {
 	 * @return ResultMessage 是否成功修改数据库中的指定hotelWorkerInfo
 	 */
 	public ResultMessage modify(final HotelWorkerPO hotelWorkerPO) {
-		sql = "UPDATE hotelworker SET " + "hotelworker.hotelName = ?,hotelworker.`password` = ? "
+		sql = "UPDATE hotelworker SET hotelworker.hotelName = ?, hotelworker.`password` = ? "
 				+ "WHERE hotelworker.hotelWorkerID = ?";
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, hotelWorkerPO.getHotelName());
+			ps.setString(1, hotelWorkerPO.getHotelName()); //此处硬编码1-3对应语句中元素的位置，已确定
 			ps.setString(2, hotelWorkerPO.getPassword());
-			ps.setString(3, hotelWorkerPO.getHotelWorkerID());
+			ps.setInt(3, Integer.parseInt(hotelWorkerPO.getHotelWorkerID()));
 
 			ps.execute();
 		} catch (SQLException e) {
@@ -98,7 +98,7 @@ public class HotelWorkerDataHelperImpl implements HotelWorkerDataHelper {
 
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, hotelWorkerID);
+			ps.setInt(1, Integer.parseInt(hotelWorkerID)); //对应sql语句中ID的位置
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -155,9 +155,9 @@ public class HotelWorkerDataHelperImpl implements HotelWorkerDataHelper {
 
 			while (rs.next()) {
 				final HotelWorkerPO result = new HotelWorkerPO(); // 封装一条数据
-				result.setHotelWorkerID((String) rs.getObject(1)); // 1-3的硬编码对应表中的表项
-				result.setHotelName((String) rs.getObject(2));
-				result.setPassword((String) rs.getObject(3));
+				result.setHotelWorkerID(String.valueOf(rs.getInt(1))); // 1-3的硬编码对应表中的表项
+				result.setPassword(rs.getString(2));
+				result.setHotelName(rs.getString(3));
 
 				list.add(result);
 			}

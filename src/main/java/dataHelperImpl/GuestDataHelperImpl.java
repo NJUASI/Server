@@ -40,18 +40,18 @@ public class GuestDataHelperImpl implements GuestDataHelper {
 	/**
 	 * @author 董金玉
 	 * @lastChangedBy 董金玉
-	 * @updateTime 2016/11/29
+	 * @updateTime 2016/11/30
 	 * @param guestPO guestInfo载体
 	 * @return guestPO 是否成功添加到数据库中
 	 */
 	public ResultMessage add(final GuestPO guestPO) {
 		sql = "INSERT INTO guest(guest.guestID,guest.birthday,guest.enterprise,"
-				+ "guest.`name`,guest.nickName,guest.`password`," + "guest.credit,guest.phone)"
+				+ "guest.`name`,guest.nickName,guest.`password`,guest.credit,guest.phone)"
 				+ "values(?,?,?,?,?,?,?,?)";
 
 		try {
 			ps = conn.prepareStatement(sql); // 插入数据的准备工作，1-8对应sql语句中问号的顺序
-			ps.setString(1, guestPO.getGuestID());
+			ps.setInt(1, Integer.parseInt(guestPO.getGuestID()));
 			ps.setObject(2, guestPO.getBirthday()); // 在使用setObject方法是必须注意，
 			ps.setString(3, guestPO.getEnterprise()); // 我们应该使用对应数据类型
 			ps.setString(4, guestPO.getName()); // 虽然Object可以替代所有该set方法，但会影响效率
@@ -71,24 +71,24 @@ public class GuestDataHelperImpl implements GuestDataHelper {
 	/**
 	 * @author 董金玉
 	 * @lastChangedBy 董金玉
-	 * @updateTime 2016/11/28
+	 * @updateTime 2016/11/30
 	 * @param guestPO guestInfo载体
 	 * @return ResultMessage 是否成功修改数据库中的指定guestInfo
 	 */
 	public ResultMessage modify(final GuestPO guestPO) {
 		sql = "UPDATE guest SET guest.birthday= ?,guest.enterprise = ?,guest.`name`= ?,guest.nickName = ?,"
-				+ "guest.`password` = ?,guest.credit = ?,guest.phone = ? " + "WHERE guest.guestID = ?";
+				+ "guest.`password` = ?,guest.credit = ?,guest.phone = ? WHERE guest.guestID = ?";
 		try {
 			ps = conn.prepareStatement(sql);
 
-			ps.setObject(1, guestPO.getBirthday());
+			ps.setObject(1, guestPO.getBirthday()); //此处硬编码1-8对应sql语句中元素的位置，已确定
 			ps.setString(2, guestPO.getEnterprise());
 			ps.setString(3, guestPO.getName());
 			ps.setString(4, guestPO.getNickName());
 			ps.setString(5, guestPO.getPassword());
 			ps.setDouble(6, guestPO.getCredit());
 			ps.setString(7, guestPO.getPhone());
-			ps.setString(8, guestPO.getGuestID());
+			ps.setInt(8, Integer.parseInt(guestPO.getGuestID()));
 
 			ps.execute();
 		} catch (SQLException e) {
@@ -107,8 +107,7 @@ public class GuestDataHelperImpl implements GuestDataHelper {
 	 */
 	public GuestPO getSingle(final String guestID) {
 		GuestPO guestPO = null;
-		sql = "SELECT guest.birthday,guest.enterPrise,guest.`name`,"
-				+ "guest.nickName,guest.`password`,guest.credit,guest.phone " + "FROM guest WHERE guest.guestID = ?"; // 获取一条数据根据guestID
+		sql = "SELECT * FROM guest WHERE guest.guestID = ?"; // 获取一条数据根据guestID
 
 		try {
 			ps = conn.prepareStatement(sql); // 该处与getAll方法相同
@@ -120,13 +119,13 @@ public class GuestDataHelperImpl implements GuestDataHelper {
 				guestPO = new GuestPO();
 
 				guestPO.setGuestID(guestID);
-				guestPO.setBirthday((LocalDate) rs.getObject(1)); // 此处硬编码1-7对应sql语句中元素
-				guestPO.setEnterprise(rs.getString(2));
-				guestPO.setName(rs.getString(3));
-				guestPO.setNickName(rs.getString(4));
-				guestPO.setPassword(rs.getString(5));
-				guestPO.setCredit(rs.getDouble(6));
-				guestPO.setPhone(rs.getString(7));
+				guestPO.setBirthday((LocalDate) rs.getObject(2)); // 此处硬编码2-8对应sql语句中元素
+				guestPO.setEnterprise(rs.getString(3));
+				guestPO.setName(rs.getString(4));
+				guestPO.setNickName(rs.getString(5));
+				guestPO.setPassword(rs.getString(6));
+				guestPO.setCredit(rs.getDouble(7));
+				guestPO.setPhone(rs.getString(8));
 			}
 
 		} catch (SQLException e) {
@@ -154,14 +153,15 @@ public class GuestDataHelperImpl implements GuestDataHelper {
 
 			while (rs.next()) {
 				final GuestPO result = new GuestPO(); // 封装一条数据
-				result.setGuestID((String) rs.getObject(1)); // 1-8的硬编码对应表中的表项
+				result.setGuestID(String.valueOf(rs.getObject(1))); // 1-8的硬编码对应表中的表项
 				result.setBirthday((LocalDate) rs.getObject(2));
-				result.setEnterprise((String) rs.getObject(3));
-				result.setName((String) rs.getObject(4));
-				result.setNickName((String) rs.getObject(5));
-				result.setPassword((String) rs.getObject(6));
-				result.setCredit((double) rs.getObject(7));
-				result.setPhone((String) rs.getObject(8));
+				result.setEnterprise(rs.getString(3));
+				result.setName(rs.getString(4));
+				result.setNickName(rs.getString(5));
+				result.setPassword(rs.getString(6));
+				result.setCredit(rs.getDouble(7));
+				result.setPhone(rs.getString(8));
+				
 				list.add(result);
 			}
 		} catch (SQLException e) {

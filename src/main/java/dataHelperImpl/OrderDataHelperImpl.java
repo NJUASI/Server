@@ -56,11 +56,11 @@ public class OrderDataHelperImpl implements OrderDataHelper {
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, orderPO.getOrderID());
-			ps.setString(2, orderPO.getGuestID());
-			ps.setString(3, orderPO.getHotelID());
+			ps.setObject(1, orderPO.getOrderID());
+			ps.setObject(2, orderPO.getGuestID());
+			ps.setObject(3, orderPO.getHotelID());
 			ps.setString(4, orderPO.getHotelName());
-			ps.setString(5, orderPO.getHotelAddress());
+			ps.setObject(5, orderPO.getHotelAddress());
 			ps.setDouble(6, orderPO.getPrice());
 			ps.setObject(7, orderPO.getExpectExecuteTime());
 			ps.setObject(8, orderPO.getExpectLeaveTime());
@@ -100,8 +100,8 @@ public class OrderDataHelperImpl implements OrderDataHelper {
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setObject(1, state);
-			ps.setString(2, orderID);
+			ps.setObject(1, state); //此处硬编码1-2对应sql语句中问号的位置
+			ps.setInt(2, Integer.parseInt(orderID));
 			
 			ps.execute();
 		} catch (SQLException e) {
@@ -125,7 +125,7 @@ public class OrderDataHelperImpl implements OrderDataHelper {
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setObject(1, comment);
-			ps.setString(2, orderID);
+			ps.setInt(2, Integer.parseInt(orderID));
 			
 			ps.execute();
 		} catch (SQLException e) {
@@ -148,7 +148,7 @@ public class OrderDataHelperImpl implements OrderDataHelper {
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, orderID);
+			ps.setInt(1, Integer.parseInt(orderID));
 			rs = ps.executeQuery();
 			
 			if (rs.next()) {
@@ -177,7 +177,7 @@ public class OrderDataHelperImpl implements OrderDataHelper {
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, guestID);
+			ps.setInt(1, Integer.parseInt(guestID));
 			rs = ps.executeQuery();
 			
 			while (rs.next()) {
@@ -204,7 +204,7 @@ public class OrderDataHelperImpl implements OrderDataHelper {
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, hotelID);
+			ps.setInt(1, Integer.parseInt(hotelID));
 			rs = ps.executeQuery();
 			
 			while (rs.next()) {
@@ -291,15 +291,15 @@ public class OrderDataHelperImpl implements OrderDataHelper {
 	private OrderPO convert() {  //当ResultSet被赋值后使用
 		final OrderPO orderPO = new OrderPO();
 		try {
-			orderPO.setOrderID(rs.getString(1));
-			orderPO.setGuestID(rs.getString(2));
-			orderPO.setHotelID(rs.getString(3));
+			orderPO.setOrderID(String.valueOf(rs.getInt(1)));
+			orderPO.setGuestID(String.valueOf(rs.getInt(2)));
+			orderPO.setHotelID(String.valueOf(rs.getInt(3)));
 			orderPO.setHotelName(rs.getString(4));
-			orderPO.setHotelAddress(rs.getString(5));
+			orderPO.setHotelAddress(String.valueOf(rs.getObject(5)));
 			orderPO.setPrice(rs.getDouble(6));
 			orderPO.setExpectExecuteTime((LocalDateTime) rs.getObject(7));
 			orderPO.setExpectLeaveTime((LocalDateTime) rs.getObject(8));
-			orderPO.setState(rs.getString(9));
+			orderPO.setState((OrderState)rs.getObject(9));
 			orderPO.setPreviousPrice(rs.getDouble(10));
 			orderPO.setCreateTime((LocalDateTime) rs.getObject(11));
 			orderPO.setCheckInTime((LocalDateTime) rs.getObject(12));

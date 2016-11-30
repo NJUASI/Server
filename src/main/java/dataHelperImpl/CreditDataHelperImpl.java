@@ -46,8 +46,7 @@ public class CreditDataHelperImpl implements CreditDataHelper {
 	 * @return List<CreditPO> 所有creditInfo载体
 	 */
 	public List<CreditPO> getAll(final String guestID) {
-		sql = "SELECT credit.time, credit.orderID, credit.previousCredit, "
-				+ "credit.afterCredit,credit.reason FROM credit WHERE credit.guestID = ?";
+		sql = "SELECT * FROM credit WHERE credit.guestID = ?";
 		final List<CreditPO> result = new ArrayList<CreditPO>();
 		
 		try {
@@ -58,11 +57,11 @@ public class CreditDataHelperImpl implements CreditDataHelper {
 			while (rs.next()) {
 				final CreditPO creditPO = new CreditPO();
 				creditPO.setGuestID(guestID);
-				creditPO.setTime((LocalDateTime) rs.getObject(1));
-				creditPO.setOrderID(rs.getString(2));
-				creditPO.setPreCredit(rs.getDouble(3));
-				creditPO.setCredit(rs.getDouble(4));
-				creditPO.setReason(rs.getString(5));
+				creditPO.setTime((LocalDateTime) rs.getObject(2)); //此处硬编码2-6对应表项中元素的位置，已确定
+				creditPO.setOrderID(String.valueOf(rs.getInt(3)));
+				creditPO.setPreCredit(rs.getDouble(4));
+				creditPO.setCredit(rs.getDouble(5));
+				creditPO.setReason((String)rs.getObject(6));
 				
 				result.add(creditPO);
 			}
@@ -86,12 +85,12 @@ public class CreditDataHelperImpl implements CreditDataHelper {
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, creditPO.getGuestID());
-			ps.setString(2, creditPO.getOrderID());
+			ps.setInt(1, Integer.parseInt(creditPO.getGuestID())); //此处硬编码1-6对应语句中元素的位置，已确定
+			ps.setInt(2, Integer.parseInt(creditPO.getOrderID()));
 			ps.setObject(3, creditPO.getTime());
 			ps.setDouble(4, creditPO.getPreCredit()); 
 			ps.setDouble(5, creditPO.getCredit());
-			ps.setString(6, creditPO.getReason());
+			ps.setObject(6, creditPO.getReason());
 			
 			ps.execute();
 		} catch (SQLException e) {
@@ -108,7 +107,7 @@ public class CreditDataHelperImpl implements CreditDataHelper {
 	 * @param
 	 * @return
 	 */
-	public void close() {
+	public void close() { //当决定抛弃该对象时调用
 		JDBCUtil.close(rs, ps, conn);
 		this.sql = null;
 	}
