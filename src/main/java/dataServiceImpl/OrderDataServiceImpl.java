@@ -5,6 +5,9 @@ import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDate;
 import java.util.List;
 
+import dataHelper.DataFactory;
+import dataHelper.OrderDataHelper;
+import dataHelperImpl.DataFactoryImpl;
 import dataService.orderDataService.OrderDataService;
 import po.OrderGeneralPO;
 import po.OrderPO;
@@ -12,7 +15,7 @@ import utilities.ResultMessage;
 
 /**
  * 
- * @author cuihua
+ * @author charles
  * lastChangedBy charles
  * updateTime 2016/11/29
  *
@@ -21,6 +24,8 @@ public class OrderDataServiceImpl extends UnicastRemoteObject implements OrderDa
 
 	private static final long serialVersionUID = 3434060152387200042L;
 	
+	private static OrderDataHelper orderDataHelper;
+	
 	/**
 	 * @author charles
 	 * @lastChangedBy charles
@@ -28,9 +33,24 @@ public class OrderDataServiceImpl extends UnicastRemoteObject implements OrderDa
 	 * @throws RemoteException RMI
 	 */
 	public OrderDataServiceImpl() throws RemoteException {
-		super();
+		if (orderDataHelper == null) {
+			init();
+		}
 	}
 
+	/**
+	 * 
+	 * @author charles
+	 * @lastChangedBy charles
+	 * @updateTime 2016/11/27
+	 * 
+	 * 单例初始化 orderDataHelper
+	 */
+	private void init() {
+		DataFactory dataFactory = DataFactoryImpl.getInstance();
+		orderDataHelper = dataFactory.getOrderDataHelper();
+	}
+	
 	/**
 	 * 
 	 * @author charles
@@ -42,7 +62,7 @@ public class OrderDataServiceImpl extends UnicastRemoteObject implements OrderDa
 	 */
 	@Override
 	public ResultMessage createOrder(final OrderPO order) throws RemoteException {
-		return null;
+		return orderDataHelper.add(order);
 	}
 
 	/**
