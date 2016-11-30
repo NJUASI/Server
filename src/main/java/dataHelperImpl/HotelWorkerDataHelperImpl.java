@@ -24,6 +24,8 @@ public class HotelWorkerDataHelperImpl implements HotelWorkerDataHelper {
 	private PreparedStatement ps;
 
 	private ResultSet rs;
+	
+	private String sql;
 
 	/**
 	 * @author 董金玉
@@ -38,12 +40,11 @@ public class HotelWorkerDataHelperImpl implements HotelWorkerDataHelper {
 	 * @author 董金玉
 	 * @lastChangedBy 董金玉
 	 * @updateTime 2016/11/28
-	 * @param Object
-	 *            应为hotelWorkerPO-hotelWorkerInfo载体
-	 * @return Object hotelWorkerPO是否成功添加到数据库中
+	 * @param hotelWorkerPO hotelWorkerInfo载体
+	 * @return ResultMessage 是否成功添加到数据库中
 	 */
-	public ResultMessage add(HotelWorkerPO hotelWorkerPO) {
-		String sql = "INSERT INTO hotelworker(hotelworker.hotelWorkerID,hotelworker.hotelName,hotelworker.`password`) "
+	public ResultMessage add(final HotelWorkerPO hotelWorkerPO) {
+		sql = "INSERT INTO hotelworker(hotelworker.hotelWorkerID,hotelworker.hotelName,hotelworker.`password`) "
 				+ "values (?,?,?)";
 
 		try {
@@ -64,12 +65,11 @@ public class HotelWorkerDataHelperImpl implements HotelWorkerDataHelper {
 	 * @author 董金玉
 	 * @lastChangedBy 董金玉
 	 * @updateTime 2016/11/28
-	 * @param Object
-	 *            应为hotelWorkerPO-hotelWorkerInfo载体
-	 * @return Object hotelWorkerPO是否成功修改数据库中的指定hotelWorkerInfo
+	 * @param hotelWorkerPO hotelWorkerInfo载体
+	 * @return ResultMessage 是否成功修改数据库中的指定hotelWorkerInfo
 	 */
-	public ResultMessage modify(HotelWorkerPO hotelWorkerPO) {
-		String sql = "UPDATE hotelworker SET " + "hotelworker.hotelName = ?,hotelworker.`password` = ? "
+	public ResultMessage modify(final HotelWorkerPO hotelWorkerPO) {
+		sql = "UPDATE hotelworker SET " + "hotelworker.hotelName = ?,hotelworker.`password` = ? "
 				+ "WHERE hotelworker.hotelWorkerID = ?";
 		try {
 			ps = conn.prepareStatement(sql);
@@ -90,12 +90,11 @@ public class HotelWorkerDataHelperImpl implements HotelWorkerDataHelper {
 	 * @author 董金玉
 	 * @lastChangedBy 董金玉
 	 * @updateTime 2016/11/28
-	 * @param Object
-	 *            应为hotelWorkerID
-	 * @return Object 是否成功删除指定酒店工作人员信息
+	 * @param hotelWorkerID 酒店工作人员ID
+	 * @return ResultMessage 是否成功删除指定酒店工作人员信息
 	 */
-	public ResultMessage delete(String hotelWorkerID) {
-		String sql = "DELETE FROM hotelworker WHERE hotelworker.hotelWorkerID = ?";
+	public ResultMessage delete(final String hotelWorkerID) {
+		sql = "DELETE FROM hotelworker WHERE hotelworker.hotelWorkerID = ?";
 
 		try {
 			ps = conn.prepareStatement(sql);
@@ -112,13 +111,12 @@ public class HotelWorkerDataHelperImpl implements HotelWorkerDataHelper {
 	 * @author 董金玉
 	 * @lastChangedBy 董金玉
 	 * @updateTime 2016/11/28
-	 * @param Object
-	 *            应为hotelWorkerID
-	 * @return Object 数据库中的指定hotelWorkerInfo载体
+	 * @param hotelWorkerID 酒店工作人员ID
+	 * @return HotelWorkerPO 数据库中的指定hotelWorkerInfo载体
 	 */
-	public HotelWorkerPO getSingle(String hotelWorkerID) {
+	public HotelWorkerPO getSingle(final String hotelWorkerID) {
 		HotelWorkerPO hotelWorkerPO = null;
-		String sql = "SELECT hotelworker.hotelName,hotelworker.`password` "
+		sql = "SELECT hotelworker.hotelName,hotelworker.`password` "
 				+ "FROM hotelworker WHERE hotelworker.hotelWorkerID = ?"; // 获取一条数据根据hotelWorkerID
 
 		try {
@@ -126,7 +124,7 @@ public class HotelWorkerDataHelperImpl implements HotelWorkerDataHelper {
 			ps.setString(1, hotelWorkerID);
 			rs = ps.executeQuery();
 
-			if (rs != null) {
+			if (rs.next()) {
 				hotelWorkerPO = new HotelWorkerPO();
 				hotelWorkerPO.setHotelWorkerID(hotelWorkerID);
 				hotelWorkerPO.setHotelName(rs.getString(1)); // 此处硬编码1-2对应sql语句中元素
@@ -145,21 +143,21 @@ public class HotelWorkerDataHelperImpl implements HotelWorkerDataHelper {
 	 * @lastChangedBy 董金玉
 	 * @updateTime 2016/11/28
 	 * @param
-	 * @return Object 获取所有hotelWorkerInfo载体
+	 * @return List<HotelWorkerPO> 获取所有hotelWorkerInfo载体
 	 */
 	public List<HotelWorkerPO> getAll() {
-		String sql = "SELECT * FROM hotelworker"; // sql语句，挑选所有hotelWorker数据
-		List<HotelWorkerPO> list = new ArrayList<HotelWorkerPO>(); // 封装多条数据
+		sql = "SELECT * FROM hotelworker"; // sql语句，挑选所有hotelWorker数据
+		final List<HotelWorkerPO> list = new ArrayList<HotelWorkerPO>(); // 封装多条数据
 
 		try {
 			ps = conn.prepareStatement(sql); // 获取数据的准备工作
 			rs = ps.executeQuery(); // 得到执行语句后的结果集合
 
 			while (rs.next()) {
-				HotelWorkerPO result = new HotelWorkerPO(); // 封装一条数据
-				result.setHotelWorkerID((String)rs.getObject(1)); // 1-3的硬编码对应表中的表项
-				result.setHotelName((String)rs.getObject(2));
-				result.setPassword((String)rs.getObject(3));
+				final HotelWorkerPO result = new HotelWorkerPO(); // 封装一条数据
+				result.setHotelWorkerID((String) rs.getObject(1)); // 1-3的硬编码对应表中的表项
+				result.setHotelName((String) rs.getObject(2));
+				result.setPassword((String) rs.getObject(3));
 
 				list.add(result);
 			}
@@ -179,5 +177,6 @@ public class HotelWorkerDataHelperImpl implements HotelWorkerDataHelper {
 	 */
 	public void close() { // 当决定抛弃该对象的时候，调用该方法
 		JDBCUtil.close(rs, ps, conn);
+		this.sql = null;
 	}
 }

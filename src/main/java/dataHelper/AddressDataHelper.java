@@ -29,7 +29,7 @@ public interface AddressDataHelper {
 	 * @param city 城市
 	 * @return List<AddressPO> 获取所有指定city的商圈
 	 */
-	List<AddressPO> getCycle(String city);
+	List<String> getCycle(String city);
 	
 	/**
 	 * @author 董金玉

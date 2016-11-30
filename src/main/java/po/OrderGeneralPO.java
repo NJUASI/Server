@@ -38,6 +38,8 @@ public class OrderGeneralPO implements Serializable{
 	
 	// 订单状态
 	private OrderState state;
+	
+	public OrderGeneralPO(){}
 
 	public OrderGeneralPO(String orderID, String guestID, String hotelID, String hotelName, String hotelAddress,
 			double price, LocalDateTime expectExecuteTime, LocalDateTime expectLeaveTime, OrderState state) {

@@ -14,26 +14,25 @@ import utilities.ResultMessage;
 
 /**
  * 
- * @author 董金玉
- * lastChangedBy 董金玉
- * updateTime 2016/11/29
+ * @author 董金玉 lastChangedBy 董金玉 updateTime 2016/11/29
  *
  */
-public class WebManagerDataHelperImpl implements WebManagerDataHelper{
+public class WebManagerDataHelperImpl implements WebManagerDataHelper {
 
 	private Connection conn;
-	
+
 	private PreparedStatement ps;
-	
+
 	private ResultSet rs;
 	
+	private String sql;
+
 	/**
 	 * @author 董金玉
 	 * @lastChangedBy 董金玉
-	 * @updateTime 2016/11/29
-	 * 构造函数，初始化成员变量conn
+	 * @updateTime 2016/11/29 构造函数，初始化成员变量conn
 	 */
-	public WebManagerDataHelperImpl(){
+	public WebManagerDataHelperImpl() {
 		this.conn = JDBCUtil.getConnection();
 	}
 
@@ -41,39 +40,39 @@ public class WebManagerDataHelperImpl implements WebManagerDataHelper{
 	 * @author 董金玉
 	 * @lastChangedBy 董金玉
 	 * @updateTime 2016/11/29
-	 * @param Object 应为webManagerPO-webManagerInfo载体
-	 * @return Object webManagerPO是否成功添加到数据库中
+	 * @param webManagerPO webManagerInfo载体
+	 * @return ResultMessage 是否成功添加到数据库中
 	 */
-	public ResultMessage add(WebManagerPO webManagerPO) {
-		String sql = "INSERT INTO webmanager(webmanager.webManagerID,webmanager.`password`) VALUES(?,?)";
-		
+	public ResultMessage add(final WebManagerPO webManagerPO) {
+		sql = "INSERT INTO webmanager(webmanager.webManagerID,webmanager.`password`) VALUES(?,?)";
+
 		try {
-			ps = conn.prepareStatement(sql); //插入数据的准备工作，1-2对应sql语句中问号的顺序
+			ps = conn.prepareStatement(sql); // 插入数据的准备工作，1-2对应sql语句中问号的顺序
 			ps.setString(1, webManagerPO.getWebManagerID());
-			ps.setString(2, webManagerPO.getPassword()); //在使用setObject方法是必须注意，我们应该使用对应数据类型,
-			                                              //虽然Object可以替代所有该set方法，但会影响效率所以尽量使用对应数据类型的set方法
-			ps.execute(); //执行sql语句，返回值为boolean
+			ps.setString(2, webManagerPO.getPassword()); // 在使用setObject方法是必须注意，我们应该使用对应数据类型,
+															// 虽然Object可以替代所有该set方法，但会影响效率所以尽量使用对应数据类型的set方法
+			ps.execute(); // 执行sql语句，返回值为boolean
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return ResultMessage.FAIL;
 		}
-		 return ResultMessage.SUCCESS;
+		return ResultMessage.SUCCESS;
 	}
 
 	/**
 	 * @author 董金玉
 	 * @lastChangedBy 董金玉
 	 * @updateTime 2016/11/29
-	 * @param Object 应为webManagerPO-webManagerInfo载体
-	 * @return Object webManagerPO 是否成功修改数据库中的指定webManagerInfo
+	 * @param webManagerPO webManagerInfo载体
+	 * @return ResultMessage 是否成功修改数据库中的指定webManagerInfo
 	 */
-	public ResultMessage modify(WebManagerPO webManagerPO) {
-		String sql = "UPDATE webmanager SET webmanager.`password` = ? WHERE webmanager.webManagerID = ?";
+	public ResultMessage modify(final WebManagerPO webManagerPO) {
+		sql = "UPDATE webmanager SET webmanager.`password` = ? WHERE webmanager.webManagerID = ?";
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, webManagerPO.getPassword());
 			ps.setString(2, webManagerPO.getWebManagerID());
-			
+
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -86,23 +85,22 @@ public class WebManagerDataHelperImpl implements WebManagerDataHelper{
 	 * @author 董金玉
 	 * @lastChangedBy 董金玉
 	 * @updateTime 2016/11/29
-	 * @param Object 应为webManagerdID
-	 * @return Object 数据库中的指定webManagerInfo载体
+	 * @param webManagerID 网站管理人员ID
+	 * @return WebManagerPO 数据库中的指定webManagerInfo载体
 	 */
-	public WebManagerPO getSingle(String webManagerID) {
+	public WebManagerPO getSingle(final String webManagerID) {
 		WebManagerPO webManagerPO = null;
-		String sql = "SELECT webmanager.`password` FROM webmanager "
-				+ "WHERE webmanager.webManagerID = ?"; //获取一条数据根据webManagerID
-		
+		sql = "SELECT webmanager.`password` FROM webmanager " + "WHERE webmanager.webManagerID = ?"; // 获取一条数据根据webManagerID
+
 		try {
-			ps = conn.prepareStatement(sql); //该处与getAll方法相同
+			ps = conn.prepareStatement(sql); // 该处与getAll方法相同
 			ps.setString(1, webManagerID);
 			rs = ps.executeQuery();
-			
-			if(rs!=null){
-				webManagerPO  = new WebManagerPO(webManagerID,rs.getString(1));
+
+			if (rs.next()) {
+				webManagerPO = new WebManagerPO(webManagerID, rs.getString(1));
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
@@ -114,37 +112,37 @@ public class WebManagerDataHelperImpl implements WebManagerDataHelper{
 	 * @author 董金玉
 	 * @lastChangedBy 董金玉
 	 * @updateTime 2016/11/29
-	 * @param 
-	 * @return Object 获取所有webManagerInfo载体
+	 * @return List<WebManagerPO> 获取所有webManagerInfo载体
 	 */
 	public List<WebManagerPO> getAll() {
-		String sql = "SELECT * FROM webmanager"; //sql语句，挑选所有webManager数据
-		List<WebManagerPO> list  = new ArrayList<WebManagerPO>(); //封装多条数据
-		
+		sql = "SELECT * FROM webmanager"; // sql语句，挑选所有webManager数据
+		final List<WebManagerPO> list = new ArrayList<WebManagerPO>(); // 封装多条数据
+
 		try {
-			ps = conn.prepareStatement(sql); //执行sql语句
-			rs = ps.executeQuery(); //获得执行后的结果
-			
-			while(rs.next()){
-				WebManagerPO map =  new WebManagerPO(rs.getString(1),rs.getString(2)); //封装一条数据
+			ps = conn.prepareStatement(sql); // 执行sql语句
+			rs = ps.executeQuery(); // 获得执行后的结果
+
+			while (rs.next()) {
+				final WebManagerPO map = new WebManagerPO(rs.getString(1), rs.getString(2)); // 封装一条数据
 				list.add(map);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
 		return list;
 	}
-	
+
 	/**
 	 * @author 董金玉
 	 * @lastChangedBy 董金玉
 	 * @updateTime 2016/11/29
-	 * @param 
-	 * @return 
+	 * @param
+	 * @return
 	 */
-	public void close() { //当决定抛弃该对象的时候，调用该方法
+	public void close() { // 当决定抛弃该对象的时候，调用该方法
 		JDBCUtil.close(rs, ps, conn);
+		this.sql = null;
 	}
 }
