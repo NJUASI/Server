@@ -3,6 +3,7 @@ package dataHelper;
 import java.util.List;
 
 import po.AddressPO;
+import utilities.ResultMessage;
 
 /**
  * 
@@ -48,6 +49,14 @@ public interface AddressDataHelper {
 	 * @return List<AddressPO> 获取所有商圈和城市
 	 */
 	List<AddressPO> getAll();
+	
+	/**
+	 * @author 董金玉
+	 * @lastChangedBy 董金玉
+	 * @updateTime 2016/11/29
+	 * @return ResultMessage 是否成功修改折扣
+	 */
+	ResultMessage modifyDiscout(double discout,String city,String cycle);
 	
 	/**
 	 * @author 董金玉

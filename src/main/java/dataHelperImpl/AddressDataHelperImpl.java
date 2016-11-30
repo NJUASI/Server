@@ -10,6 +10,7 @@ import java.util.List;
 import dataHelper.AddressDataHelper;
 import po.AddressPO;
 import utilities.JDBCUtil;
+import utilities.ResultMessage;
 
 /**
  * 
@@ -23,7 +24,7 @@ public class AddressDataHelperImpl implements AddressDataHelper {
 	private PreparedStatement ps;
 
 	private ResultSet rs;
-	
+
 	private String sql;
 
 	/**
@@ -31,7 +32,7 @@ public class AddressDataHelperImpl implements AddressDataHelper {
 	 * @lastChangedBy 董金玉
 	 * @updateTime 2016/11/30 构造函数，初始化成员变量conn
 	 */
-	private AddressDataHelperImpl() {
+	public AddressDataHelperImpl() {
 		this.conn = JDBCUtil.getConnection();
 	}
 
@@ -56,7 +57,7 @@ public class AddressDataHelperImpl implements AddressDataHelper {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return result;
+		return this.deletDuplicate(result);
 	}
 
 	/**
@@ -69,12 +70,12 @@ public class AddressDataHelperImpl implements AddressDataHelper {
 	public List<String> getCycle(final String city) {
 		sql = "SELECT address.cycle FROM `address` WHERE city = ?";
 		final List<String> result = new ArrayList<String>();
-		
+
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, city);
 			rs = ps.executeQuery();
-			
+
 			while (rs.next()) {
 				result.add(rs.getString(1));
 			}
@@ -95,17 +96,17 @@ public class AddressDataHelperImpl implements AddressDataHelper {
 	public double getDiscout(final String city, final String cycle) {
 		sql = "SELECT address.discout FROM `address` WHERE city = ? AND cycle = ?";
 		double discout = 0;
-		
+
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, city);
 			ps.setString(2, cycle);
 			rs = ps.executeQuery();
-			
+
 			if (rs.next()) {
 				discout = rs.getDouble(1);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -121,21 +122,46 @@ public class AddressDataHelperImpl implements AddressDataHelper {
 	public List<AddressPO> getAll() {
 		sql = "SELECT * FROM address";
 		final List<AddressPO> result = new ArrayList<AddressPO>();
-		
+
 		try {
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
-			
+
 			while (rs.next()) {
 				final AddressPO addressPO = new AddressPO(rs.getString(1), rs.getString(2), rs.getDouble(3));
 				result.add(addressPO);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 		return result;
+	}
+
+	/**
+	 * @author 董金玉
+	 * @lastChangedBy 董金玉
+	 * @updateTime 2016/11/30
+	 * @param discout 需要修改的折扣
+	 * @param city  城市
+	 * @param cycle 商圈
+	 * @return ResultMessage 是否成功修改折扣
+	 */
+	public ResultMessage modifyDiscout(final double discout, final String city, final String cycle) {
+		sql = "UPDATE address SET address.discout = ? WHERE address.city = ? AND address.cycle = ?;";
+
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setDouble(1, discout);
+			ps.setString(2, city);
+			ps.setString(3, cycle);
+
+			ps.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return ResultMessage.FAIL;
+		}
+		return ResultMessage.SUCCESS;
 	}
 
 	/**
@@ -150,4 +176,22 @@ public class AddressDataHelperImpl implements AddressDataHelper {
 		this.sql = null;
 	}
 
+	/**
+	 * @author 董金玉
+	 * @lastChangedBy 董金玉
+	 * @updateTime 2016/11/30
+	 * @param list 含有重复字符串的list
+	 * @return List<String> 去除重复字符串的list
+	 */
+	private List<String> deletDuplicate(List<String> list) {
+
+		for (int i = 0; i < list.size() - 1;) {
+			if (list.get(i).equals(list.get(i + 1))) {
+				list.remove(i + 1);
+			} else {
+				i++;
+			}
+		}
+		return list;
+	}
 }
