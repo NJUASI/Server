@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -226,13 +225,12 @@ public class OrderDataHelperImpl implements OrderDataHelper {
 	 * @param date 需要查询的日期
 	 * @return List<OrderPO> 指定日期的所有异常orderInfo载体
 	 */
-	public List<OrderPO> getAbnormal(final LocalDate date) {
-		sql = "SELECT * FROM `order` WHERE `order`.state = 'ABNORMAL' AND `order`.createTime = ?;";
+	public List<OrderPO> getAbnormal() {
+		sql = "SELECT * FROM `order` WHERE `order`.state = 'ABNORMAL'";
 		final List<OrderPO> result = new ArrayList<OrderPO>();
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setObject(1, date);
 			rs = ps.executeQuery();
 			
 			while (rs.next()) {
@@ -253,13 +251,12 @@ public class OrderDataHelperImpl implements OrderDataHelper {
 	 * @param date 需要查询的日期
 	 * @return List<OrderPO> 指定日期的所有未执行orderInfo载体
 	 */
-	public List<OrderPO> getUnexecuted(final LocalDate date) {
-		sql = "SELECT * FROM `order` WHERE `order`.state = 'UNEXECUTED' AND `order`.createTime = ?;";
+	public List<OrderPO> getUnexecuted() {
+		sql = "SELECT * FROM `order` WHERE `order`.state = 'UNEXECUTED'";
 		final List<OrderPO> result = new ArrayList<OrderPO>();
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setObject(1, date);
 			rs = ps.executeQuery();
 			
 			while (rs.next()) {
