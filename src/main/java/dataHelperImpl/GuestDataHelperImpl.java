@@ -6,12 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import dataHelper.DataHelper;
-import dataHelper.GetAllDataHelper;
+import dataHelper.GuestDataHelper;
 import po.GuestPO;
 import utilities.JDBCUtil;
 import utilities.ResultMessage;
@@ -23,7 +20,7 @@ import utilities.ResultMessage;
  * updateTime 2016/11/28
  *
  */
-public class GuestDataHelperImpl implements DataHelper, GetAllDataHelper{
+public class GuestDataHelperImpl implements GuestDataHelper {
 
 	private Connection conn;
 	
@@ -37,43 +34,12 @@ public class GuestDataHelperImpl implements DataHelper, GetAllDataHelper{
 	 * @updateTime 2016/11/28
 	 * 构造函数，初始化成员变量conn
 	 */
-	public GuestDataHelperImpl(){
+	public GuestDataHelperImpl() {
 		this.conn = JDBCUtil.getConnection(); 
 	}
 	
-	/**
-	 * @author 董金玉
-	 * @lastChangedBy 董金玉
-	 * @updateTime 2016/11/28
-	 * @param 
-	 * @return Object 获取所有guestInfo载体
-	 */
-	public Object getAll() {
-		String sql = "SELECT * FROM guest"; //sql语句，挑选所有guest数据
-		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>(); //封装多条数据
-		
-		try {
-			ps = conn.prepareStatement(sql); //获取数据的准备工作
-			rs = ps.executeQuery(); //得到执行语句后的结果集合
-			
-			while(rs.next()){
-				Map<String,Object> result = new HashMap<String,Object>(); //封装一条数据
-				result.put("guestID", rs.getObject(1)); //1-8的硬编码对应表中的表项
-				result.put("birthday", rs.getObject(2));
-				result.put("enterPrise", rs.getObject(3));
-				result.put("name", rs.getObject(4));
-				result.put("nickName", rs.getObject(5));
-				result.put("password", rs.getObject(6));
-				result.put("credit", rs.getObject(7));
-				result.put("phone", rs.getObject(8));
-				list.add(result);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return list;
-	}
+	
+	
 	
 	/**
 	 * @author 董金玉
@@ -82,8 +48,7 @@ public class GuestDataHelperImpl implements DataHelper, GetAllDataHelper{
 	 * @param Object 应为guestPO-guestInfo载体
 	 * @return Object guestPO是否成功添加到数据库中
 	 */
-	public Object add(Object object) {
-		GuestPO guestPO = (GuestPO)object;
+	public ResultMessage add(GuestPO guestPO) {
 		String sql = "INSERT INTO guest(guest.guestID,guest.birthday,guest.enterprise,"
 				+ "guest.`name`,guest.nickName,guest.`password`,"
 				+ "guest.credit,guest.phone)"
@@ -108,7 +73,6 @@ public class GuestDataHelperImpl implements DataHelper, GetAllDataHelper{
 		 return ResultMessage.SUCCESS;
 	}
 
-	
 	/**
 	 * @author 董金玉
 	 * @lastChangedBy 董金玉
@@ -116,28 +80,27 @@ public class GuestDataHelperImpl implements DataHelper, GetAllDataHelper{
 	 * @param Object 应为guestPO-guestInfo载体
 	 * @return Object guestPO是否成功修改数据库中的指定guestInfo
 	 */
-	public Object modify(Object object) {
-		GuestPO guestPO = (GuestPO)object;
+	public ResultMessage modify(GuestPO guestPO) {
 		String sql = "UPDATE guest SET guest.birthday= ?,guest.enterprise = ?,guest.`name`= ?,guest.nickName = ?,"
-                     +"guest.`password` = ?,guest.credit = ?,guest.phone = ? "
-                     + "WHERE guest.guestID = ?";
-		try {
-			ps = conn.prepareStatement(sql);
-			ps.setObject(1, guestPO.getBirthday());
-			ps.setString(2, guestPO.getEnterprise());
-			ps.setString(3, guestPO.getName());
-			ps.setString(4, guestPO.getNickName());
-			ps.setString(5, guestPO.getPassword());
-			ps.setDouble(6, guestPO.getCredit());
-			ps.setString(7, guestPO.getPhone());
-			ps.setString(8, guestPO.getGuestID());
-			
-			ps.execute();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return ResultMessage.FAIL;
-		}
-		return ResultMessage.SUCCESS;
+                +"guest.`password` = ?,guest.credit = ?,guest.phone = ? "
+                + "WHERE guest.guestID = ?";
+	try {
+		ps = conn.prepareStatement(sql);
+		ps.setObject(1, guestPO.getBirthday());
+		ps.setString(2, guestPO.getEnterprise());
+		ps.setString(3, guestPO.getName());
+		ps.setString(4, guestPO.getNickName());
+		ps.setString(5, guestPO.getPassword());
+		ps.setDouble(6, guestPO.getCredit());
+		ps.setString(7, guestPO.getPhone());
+		ps.setString(8, guestPO.getGuestID());
+		
+		ps.execute();
+	} catch (SQLException e) {
+		e.printStackTrace();
+		return ResultMessage.FAIL;
+	}
+	return ResultMessage.SUCCESS;
 	}
 
 	/**
@@ -147,8 +110,7 @@ public class GuestDataHelperImpl implements DataHelper, GetAllDataHelper{
 	 * @param Object 应为guestID
 	 * @return Object 数据库中的指定guestInfo载体
 	 */
-	public Object getSingle(Object object) {
-		String guestID  = (String)object;
+	public GuestPO getSingle(String guestID) {
 		GuestPO guestPO = null;
 		String sql = "SELECT guest.birthday,guest.enterPrise,guest.`name`,"
 				+ "guest.nickName,guest.`password`,guest.credit,guest.phone "
@@ -178,6 +140,40 @@ public class GuestDataHelperImpl implements DataHelper, GetAllDataHelper{
 		
 		return guestPO;
 	}
+
+	/**
+	 * @author 董金玉
+	 * @lastChangedBy 董金玉
+	 * @updateTime 2016/11/28
+	 * @param 
+	 * @return Object 获取所有guestInfo载体
+	 */
+	public List<GuestPO> getAll() {
+		String sql = "SELECT * FROM guest"; //sql语句，挑选所有guest数据
+		List<GuestPO> list = new ArrayList<GuestPO>(); //封装多条数据
+		
+		try {
+			ps = conn.prepareStatement(sql); //获取数据的准备工作
+			rs = ps.executeQuery(); //得到执行语句后的结果集合
+			
+			while(rs.next()){
+				GuestPO result = new GuestPO(); //封装一条数据
+				result.setGuestID((String)rs.getObject(1)); //1-8的硬编码对应表中的表项
+				result.setBirthday((LocalDate)rs.getObject(2));
+				result.setEnterprise((String)rs.getObject(3));
+				result.setName((String)rs.getObject(4));
+				result.setNickName((String)rs.getObject(5));
+				result.setPassword((String)rs.getObject(6));
+				result.setCredit((double)rs.getObject(7));
+				result.setPhone((String)rs.getObject(8));
+				list.add(result);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
 	
 	/**
 	 * @author 董金玉
@@ -189,17 +185,4 @@ public class GuestDataHelperImpl implements DataHelper, GetAllDataHelper{
 	public void close() {  //当决定抛弃该对象的时候，调用该方法
 		JDBCUtil.close(rs, ps, conn);
 	}
-
-	/**
-	 * @author 董金玉
-	 * @lastChangedBy 董金玉
-	 * @updateTime 2016/11/28
-	 * @param 
-	 * @return 
-	 * 尚未实现，根据需要进行实现
-	 */
-	public Object getAll(Object object) {  //根据是否想要有筛选，实现该方法
-		return null;
-	}
-
 }

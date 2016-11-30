@@ -1,31 +1,24 @@
 package dataHelperImpl;
 
-import dataHelper.DataHelper;
+import java.util.List;
 
-public class CreditDataHelperImpl implements DataHelper{
+import dataHelper.CreditDataHelper;
+import po.CreditPO;
+import utilities.ResultMessage;
 
-	@Override
-	public Object add(Object object) {
-		// TODO Auto-generated method stub
+public class CreditDataHelperImpl implements CreditDataHelper{
+
+	public List<CreditPO> getAll(String guestID) {
 		return null;
 	}
 
-	@Override
-	public Object modify(Object object) {
-		// TODO Auto-generated method stub
+	public ResultMessage add(CreditPO creditPO) {
 		return null;
 	}
 
-	@Override
-	public Object getSingle(Object object) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void close() {
-		// TODO Auto-generated method stub
 		
 	}
 
+	
 }

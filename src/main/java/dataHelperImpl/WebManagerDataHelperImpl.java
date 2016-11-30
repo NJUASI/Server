@@ -5,12 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import dataHelper.DataHelper;
-import dataHelper.GetAllDataHelper;
+import dataHelper.WebManagerDataHelper;
 import po.WebManagerPO;
 import utilities.JDBCUtil;
 import utilities.ResultMessage;
@@ -22,7 +19,7 @@ import utilities.ResultMessage;
  * updateTime 2016/11/29
  *
  */
-public class WebManagerDataHelperImpl implements DataHelper, GetAllDataHelper{
+public class WebManagerDataHelperImpl implements WebManagerDataHelper{
 
 	private Connection conn;
 	
@@ -39,35 +36,6 @@ public class WebManagerDataHelperImpl implements DataHelper, GetAllDataHelper{
 	public WebManagerDataHelperImpl(){
 		this.conn = JDBCUtil.getConnection();
 	}
-	
-	/**
-	 * @author 董金玉
-	 * @lastChangedBy 董金玉
-	 * @updateTime 2016/11/29
-	 * @param 
-	 * @return Object 获取所有webManagerInfo载体
-	 */
-	public Object getAll() {
-		String sql = "SELECT * FROM webmanager"; //sql语句，挑选所有webManager数据
-		List<Map<String,Object>> list  = new ArrayList<Map<String,Object>>(); //封装多条数据
-		
-		try {
-			ps = conn.prepareStatement(sql); //执行sql语句
-			rs = ps.executeQuery(); //获得执行后的结果
-			
-			while(rs.next()){
-				Map<String, Object> map =  new HashMap<String, Object>(); //封装一条数据
-				map.put("webManagerID", rs.getString(1));
-				map.put("password", rs.getString(2));
-				list.add(map);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		}
-		return list;
-	}
 
 	/**
 	 * @author 董金玉
@@ -76,8 +44,7 @@ public class WebManagerDataHelperImpl implements DataHelper, GetAllDataHelper{
 	 * @param Object 应为webManagerPO-webManagerInfo载体
 	 * @return Object webManagerPO是否成功添加到数据库中
 	 */
-	public Object add(Object object) {
-		WebManagerPO webManagerPO = (WebManagerPO)object;
+	public ResultMessage add(WebManagerPO webManagerPO) {
 		String sql = "INSERT INTO webmanager(webmanager.webManagerID,webmanager.`password`) VALUES(?,?)";
 		
 		try {
@@ -100,8 +67,7 @@ public class WebManagerDataHelperImpl implements DataHelper, GetAllDataHelper{
 	 * @param Object 应为webManagerPO-webManagerInfo载体
 	 * @return Object webManagerPO 是否成功修改数据库中的指定webManagerInfo
 	 */
-	public Object modify(Object object) {
-		WebManagerPO webManagerPO = (WebManagerPO)object;
+	public ResultMessage modify(WebManagerPO webManagerPO) {
 		String sql = "UPDATE webmanager SET webmanager.`password` = ? WHERE webmanager.webManagerID = ?";
 		try {
 			ps = conn.prepareStatement(sql);
@@ -123,8 +89,7 @@ public class WebManagerDataHelperImpl implements DataHelper, GetAllDataHelper{
 	 * @param Object 应为webManagerdID
 	 * @return Object 数据库中的指定webManagerInfo载体
 	 */
-	public Object getSingle(Object object) {
-		String webManagerID  = (String)object;
+	public WebManagerPO getSingle(String webManagerID) {
 		WebManagerPO webManagerPO = null;
 		String sql = "SELECT webmanager.`password` FROM webmanager "
 				+ "WHERE webmanager.webManagerID = ?"; //获取一条数据根据webManagerID
@@ -150,21 +115,36 @@ public class WebManagerDataHelperImpl implements DataHelper, GetAllDataHelper{
 	 * @lastChangedBy 董金玉
 	 * @updateTime 2016/11/29
 	 * @param 
-	 * @return 
+	 * @return Object 获取所有webManagerInfo载体
 	 */
-	public void close() { //当决定抛弃该对象的时候，调用该方法
-		JDBCUtil.close(rs, ps, conn);
+	public List<WebManagerPO> getAll() {
+		String sql = "SELECT * FROM webmanager"; //sql语句，挑选所有webManager数据
+		List<WebManagerPO> list  = new ArrayList<WebManagerPO>(); //封装多条数据
+		
+		try {
+			ps = conn.prepareStatement(sql); //执行sql语句
+			rs = ps.executeQuery(); //获得执行后的结果
+			
+			while(rs.next()){
+				WebManagerPO map =  new WebManagerPO(rs.getString(1),rs.getString(2)); //封装一条数据
+				list.add(map);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return list;
 	}
-
+	
 	/**
 	 * @author 董金玉
 	 * @lastChangedBy 董金玉
 	 * @updateTime 2016/11/29
 	 * @param 
 	 * @return 
-	 * 尚未实现，根据需要进行实现
 	 */
-	public Object getAll(Object object) { //根据是否想要有筛选，实现该方法
-		return null;
+	public void close() { //当决定抛弃该对象的时候，调用该方法
+		JDBCUtil.close(rs, ps, conn);
 	}
 }

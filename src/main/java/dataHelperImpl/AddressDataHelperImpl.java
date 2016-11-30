@@ -1,13 +1,14 @@
 package dataHelperImpl;
 
+import java.util.List;
+
+import dataHelper.AddressDataHelper;
+import po.AddressPO;
+
 //import java.sql.Connection;
 
-import dataHelper.DataHelper;
-import dataHelper.GetAllDataHelper;
-//import po.AddressPO;
-//import utilities.JDBCUtil;
 
-public class AddressDataHelperImpl implements DataHelper, GetAllDataHelper{
+public class AddressDataHelperImpl implements AddressDataHelper{
 
 //	private Connection conn;
 	
@@ -17,38 +18,23 @@ public class AddressDataHelperImpl implements DataHelper, GetAllDataHelper{
 //		this.conn = JDBCUtil.getConnection();
 	}
 
-	public Object getAll(Object object) {
-//		String city = (String)object;
-//		String selectAllSql="SELECT city, cycle FROM 'address' where city = ?";
-		return null;
-	}				
-
-	public Object add(Object object) {
-//		AddressPO addressPO = (AddressPO)object;
-//		String insertSql="";
+	public List<String> getCity() {
 		return null;
 	}
 
-	public Object modify(Object object) {
-//		AddressPO addressPO = (AddressPO)object;
-//		String updateSql="";
+	public List<AddressPO> getCycle(String city) {
 		return null;
 	}
 
-	public Object getSingle(Object object) {
-//		String selectSingleSql="";
+	public double getDiscout(String city, String cycle) {
+		return 0;
+	}
+
+	public List<AddressPO> getAll() {
 		return null;
 	}
 
-	@Override
-	public Object getAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public void close() {
-		// TODO Auto-generated method stub
 		
 	}
 
