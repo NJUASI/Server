@@ -46,10 +46,9 @@ public class GuestDataHelperImpl_Stub implements GuestDataHelper {
 	 * @return GuestPO 数据库中的指定guestInfo载体
 	 */
 	public GuestPO getSingle(final String guestID) {
-LocalDate birthday = LocalDate.of(1995, 1, 1);
+		LocalDate birthday = LocalDate.of(1995, 1, 1);
 		
-		return new GuestPO("1234567890", birthday, "school", "zhangsan", "xiaosan",
-				"000000", "13523456789",100);
+		return new GuestPO("1234567890", birthday, "school", "zhangsan", "xiaosan", "000000", "13523456789", 100);
 	}
 
 	/**

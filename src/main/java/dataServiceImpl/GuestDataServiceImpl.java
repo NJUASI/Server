@@ -7,7 +7,7 @@ import java.util.List;
 import dataHelper.CreditDataHelper;
 import dataHelper.DataFactory;
 import dataHelper.GuestDataHelper;
-import dataHelperImpl.DataFactoryImpl;
+import dataHelperImpl.stub.DataFactoryImpl_Stub;
 import dataService.guestDataService.GuestDataService;
 import po.CreditPO;
 import po.GuestPO;
@@ -35,7 +35,8 @@ public class GuestDataServiceImpl extends UnicastRemoteObject implements GuestDa
 	 * @updateTime 2016/12/1 构造函数，从工厂中获取guestDataHelper,creditDataHlper对象
 	 */
 	public GuestDataServiceImpl() throws RemoteException {
-		this.factory = DataFactoryImpl.getInstance();
+//		this.factory = DataFactoryImpl.getInstance();
+		this.factory = DataFactoryImpl_Stub.getInstance();
 		this.guestHelper = this.factory.getGuestDataHelper();
 		this.creditHelper = this.factory.getCreditDataHelper();
 	}

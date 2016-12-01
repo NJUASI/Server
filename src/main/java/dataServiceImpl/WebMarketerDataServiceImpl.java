@@ -6,7 +6,7 @@ import java.util.List;
 
 import dataHelper.DataFactory;
 import dataHelper.WebMarketerDataHelper;
-import dataHelperImpl.DataFactoryImpl;
+import dataHelperImpl.stub.DataFactoryImpl_Stub;
 import dataService.webMarketerDataService.WebMarketerDataService;
 import po.WebMarketerPO;
 import utilities.ResultMessage;
@@ -30,7 +30,8 @@ public class WebMarketerDataServiceImpl extends UnicastRemoteObject implements W
 	 * @updateTime 2016/12/1 构造函数，从工厂中获取webMarketerDataHlper对象
 	 */
 	public WebMarketerDataServiceImpl() throws RemoteException {
-		this.factory = DataFactoryImpl.getInstance();
+//		this.factory = DataFactoryImpl.getInstance();
+		this.factory = DataFactoryImpl_Stub.getInstance();
 		this.webMarketerHelper = this.factory.getWebMarketerDataHelper();
 	
 	}
