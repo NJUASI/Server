@@ -107,7 +107,7 @@ public class OrderPO implements Serializable{
 	}
 
 	public void setOrderID(String orderID) {
-		this.setOrderID(orderID);
+		orderGeneralPO.setOrderID(orderID);
 	}
 
 	public String getGuestID() {
@@ -115,7 +115,7 @@ public class OrderPO implements Serializable{
 	}
 
 	public void setGuestID(String guestID) {
-		this.setGuestID(guestID);
+		orderGeneralPO.setGuestID(guestID);
 	}
 
 	public String getHotelID() {
@@ -123,7 +123,7 @@ public class OrderPO implements Serializable{
 	}
 
 	public void setHotelID(String hotelID) {
-		this.setHotelID(hotelID);
+		orderGeneralPO.setHotelID(hotelID);
 	}
 
 	public String getHotelName() {
@@ -131,7 +131,7 @@ public class OrderPO implements Serializable{
 	}
 
 	public void setHotelName(String hotelName) {
-		this.setHotelName(hotelName);
+		orderGeneralPO.setHotelName(hotelName);
 	}
 
 	public String getHotelAddress() {
@@ -139,7 +139,7 @@ public class OrderPO implements Serializable{
 	}
 
 	public void setHotelAddress(String hotelAddress) {
-		this.setHotelAddress(hotelAddress);
+		orderGeneralPO.setHotelAddress(hotelAddress);
 	}
 
 	public double getPrice() {
@@ -147,7 +147,7 @@ public class OrderPO implements Serializable{
 	}
 
 	public void setPrice(double price) {
-		this.setPrice(price);
+		orderGeneralPO.setPrice(price);
 	}
 
 	public double getPreviousPrice() {
@@ -163,7 +163,7 @@ public class OrderPO implements Serializable{
 	}
 
 	public void setExpectExecuteTime(LocalDateTime expectExecuteTime) {
-		this.setExpectExecuteTime(expectExecuteTime);
+		orderGeneralPO.setExpectExecuteTime(expectExecuteTime);
 	}
 
 	public OrderState getState() {
@@ -171,7 +171,7 @@ public class OrderPO implements Serializable{
 	}
 
 	public void setState(OrderState state) {
-		this.setState(state);
+		orderGeneralPO.setState(state);
 	}
 	
 	public LocalDateTime getExpectLeaveTime() {
@@ -179,7 +179,7 @@ public class OrderPO implements Serializable{
 	}
 
 	public void setExpectLeaveTime(LocalDateTime expectLeaveTime) {
-		this.setExpectLeaveTime(expectLeaveTime);
+		orderGeneralPO.setExpectLeaveTime(expectLeaveTime);
 	}
 	
 	public LocalDateTime getCreateTime() {

@@ -52,7 +52,7 @@ public final class HotelPO implements Serializable{
 		return hotelGeneralPO.getHotelName();
 	}
 	public void setHotelName(String hotelName) {
-		this.setHotelName(hotelName);
+		hotelGeneralPO.setHotelName(hotelName);
 	}
 	
 	public String getCity() {
@@ -80,14 +80,14 @@ public final class HotelPO implements Serializable{
 		return hotelGeneralPO.getLevel();
 	}
 	public void setLevel(String level) {
-		this.setLevel(level);
+		hotelGeneralPO.setLevel(level);
 	}
 	
 	public double getScore() {
 		return hotelGeneralPO.getScore();
 	}
 	public void setScore(double score) {
-		this.setScore(score);
+		hotelGeneralPO.setScore(score);
 	}
 	
 	public String getIntroduction() {
