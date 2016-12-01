@@ -55,6 +55,18 @@ public class OrderGeneralPO implements Serializable{
 		this.state = state;
 	}
 
+	public OrderGeneralPO(OrderPO orderPO) {
+		this.orderID = orderPO.getOrderID();
+		this.guestID = orderPO.getGuestID();
+		this.hotelID = orderPO.getHotelID();
+		this.hotelName = orderPO.getHotelName();
+		this.hotelAddress = orderPO.getHotelAddress();
+		this.price = orderPO.getPrice();
+		this.expectExecuteTime = orderPO.getExpectExecuteTime();
+		this.expectLeaveTime = orderPO.getExpectLeaveTime();
+		this.state = orderPO.getState();
+	}
+	
 	public String getOrderID() {
 		return orderID;
 	}
