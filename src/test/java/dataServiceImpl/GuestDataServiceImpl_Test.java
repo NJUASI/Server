@@ -83,7 +83,7 @@ public class GuestDataServiceImpl_Test {
 		try {
 			GuestDataService guest = new GuestDataServiceImpl();
 			GuestPO guestPO = new GuestPO("1234567890", birthday, "school", "zhangsan", "xiaosan", "000000", "13523456789", 100);
-			assertEquals(guest.add(guestPO),ResultMessage.SUCCESS);
+			assertEquals(guest.add(guestPO),ResultMessage.FAIL);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
