@@ -3,19 +3,17 @@ package dataServiceImpl;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
-import java.util.Map;
 
 import dataService.hotelDataService.HotelDataService;
-import po.AddressPO;
 import po.CheckInPO;
 import po.CheckOutPO;
 import po.EvaluationPO;
 import po.HotelGeneralPO;
 import po.HotelPO;
+import po.RemainRoomInfoPO;
 import po.RoomInfoPO;
-import utilities.Operation;
+import utilities.Address;
 import utilities.ResultMessage;
-import utilities.RoomType;
 
 public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDataService{
 
@@ -26,79 +24,74 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 		super();
 	}
 
-
 	@Override
 	public HotelPO getHotelInfo(String hotelID) throws RemoteException {
 		return null;
 	}
 
-
 	@Override
-	public ResultMessage setHotelInfo(HotelPO hotelPO) throws RemoteException {
+	public ResultMessage updateHotelInfo(HotelPO hotelPO) throws RemoteException {
+		// TODO 自动生成的方法存根
 		return null;
 	}
-
-
+	
 	@Override
 	public List<RoomInfoPO> getHotelRoomInfo(String hotelID) throws RemoteException {
 		return null;
 	}
 
-
 	@Override
-	public ResultMessage setHotelRoomInfo(List<RoomInfoPO> list) throws RemoteException {
+	public ResultMessage updateHotelRoomInfo(List<RoomInfoPO> list) throws RemoteException {
+		// TODO 自动生成的方法存根
 		return null;
 	}
-
-
-	@Override
-	public ResultMessage setCheckInInfo(CheckInPO checkInPO) throws RemoteException {
-		return null;
-	}
-
-
-	@Override
-	public ResultMessage setCheckOutInfo(CheckOutPO checkOutPO) throws RemoteException {
-		return null;
-	}
-
-
-	@Override
-	public List<RoomInfoPO> getRemainRoomInfo(String hotelID) throws RemoteException {
-		return null;
-	}
-
-
-	@Override
-	public ResultMessage setRemainRoomInfo(String hotelID, Operation operation, Map<RoomType, Integer> roomInfo)
-			throws RemoteException {
-		return null;
-	}
-
-
-	@Override
-	public ResultMessage add(HotelPO hotelPO) throws RemoteException {
-		return null;
-	}
-
-
-	@Override
-	public List<HotelGeneralPO> getHotelList(AddressPO addressPO) throws RemoteException {
-		return null;
-	}
-
-
+	
 	@Override
 	public HotelPO getHotelDetail(String hotelID) throws RemoteException {
 		return null;
 	}
 
-
 	@Override
-	public ResultMessage addEvaluation(EvaluationPO evaluationPO) throws RemoteException {
+	public ResultMessage updateCheckInInfo(CheckInPO checkInPO) throws RemoteException {
+		// TODO 自动生成的方法存根
 		return null;
 	}
 
+	@Override
+	public ResultMessage updateCheckOutInfo(CheckOutPO checkOutPO) throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	@Override
+	public List<EvaluationPO> getEvaluations(String hotelID) throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	@Override
+	public ResultMessage updateEvaluation(EvaluationPO evaluationPO) throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	@Override
+	public List<RemainRoomInfoPO> getRemainRoomInfo(String hotelID) throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+
+	@Override
+	public ResultMessage updateRemainRoomInfo(RemainRoomInfoPO remainRoomPO) throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
 	
+	@Override
+	public List<HotelGeneralPO> getHotelGeneralList(Address address) throws RemoteException {
+		// TODO 自动生成的方法存根
+		return null;
+	}
 	
 }

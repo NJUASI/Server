@@ -6,7 +6,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import dataHelper.DataFactory;
 import dataHelper.OrderDataHelper;
 import dataHelperImpl.DataFactoryImpl;
 import dataService.orderDataService.OrderDataService;
@@ -49,7 +48,7 @@ public class OrderDataServiceImpl extends UnicastRemoteObject implements OrderDa
 	 * 单例初始化 orderDataHelper
 	 */
 	private void init() {
-		DataFactory dataFactory = DataFactoryImpl.getInstance();
+		DataFactoryImpl dataFactory = DataFactoryImpl.getInstance();
 		orderDataHelper = dataFactory.getOrderDataHelper();
 	}
 	

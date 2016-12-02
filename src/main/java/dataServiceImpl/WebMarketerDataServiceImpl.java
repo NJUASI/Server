@@ -4,9 +4,8 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
-import dataHelper.DataFactory;
 import dataHelper.WebMarketerDataHelper;
-import dataHelperImpl.stub.DataFactoryImpl_Stub;
+import dataHelperImpl.DataFactoryImpl;
 import dataService.webMarketerDataService.WebMarketerDataService;
 import po.WebMarketerPO;
 import utilities.ResultMessage;
@@ -20,7 +19,7 @@ public class WebMarketerDataServiceImpl extends UnicastRemoteObject implements W
 
 	private static final long serialVersionUID = 3434060152387200042L;
 	
-	private DataFactory factory;
+	private DataFactoryImpl factory;
 	
 	private WebMarketerDataHelper webMarketerHelper;
 	
@@ -31,7 +30,7 @@ public class WebMarketerDataServiceImpl extends UnicastRemoteObject implements W
 	 */
 	public WebMarketerDataServiceImpl() throws RemoteException {
 //		this.factory = DataFactoryImpl.getInstance();
-		this.factory = DataFactoryImpl_Stub.getInstance();
+		this.factory = DataFactoryImpl.getInstance();
 		this.webMarketerHelper = this.factory.getWebMarketerDataHelper();
 	
 	}
