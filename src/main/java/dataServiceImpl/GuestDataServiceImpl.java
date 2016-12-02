@@ -6,7 +6,7 @@ import java.util.List;
 
 import dataHelper.CreditDataHelper;
 import dataHelper.GuestDataHelper;
-import dataHelperImpl.DataFactoryImpl;
+import dataHelperImpl.stub.DataFactoryImpl_Stub;
 import dataService.guestDataService.GuestDataService;
 import po.CreditPO;
 import po.GuestPO;
@@ -22,7 +22,7 @@ public class GuestDataServiceImpl extends UnicastRemoteObject implements GuestDa
 
 	private static final long serialVersionUID = 3434060152387200042L;
 	
-	private DataFactoryImpl factory;
+	private DataFactoryImpl_Stub factory;
 	
 	private GuestDataHelper guestHelper;
 	
@@ -35,7 +35,7 @@ public class GuestDataServiceImpl extends UnicastRemoteObject implements GuestDa
 	 */
 	public GuestDataServiceImpl() throws RemoteException {
 //		this.factory = DataFactoryImpl.getInstance();
-		this.factory = DataFactoryImpl.getInstance();
+		this.factory = DataFactoryImpl_Stub.getInstance();
 		this.guestHelper = this.factory.getGuestDataHelper();
 		this.creditHelper = this.factory.getCreditDataHelper();
 	}

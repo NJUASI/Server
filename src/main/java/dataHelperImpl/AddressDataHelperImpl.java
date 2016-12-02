@@ -154,7 +154,7 @@ public class AddressDataHelperImpl implements AddressDataHelper {
 	public ResultMessage modifyDiscout(AddressPO addressPO) {
 		String city = addressPO.getCity();
 		String circle = addressPO.getCircle();
-		double discount = addressPO.getDiscount();
+		double discount = addressPO.getDiscout();
 		sql = "UPDATE address SET address.discout = ? WHERE address.city = ? AND address.cycle = ?;";
 
 		try {
