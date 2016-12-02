@@ -120,9 +120,9 @@ public class AddressDataHelperImpl implements AddressDataHelper {
 
 	/**
 	 * @author 董金玉
-	 * @lastChangedBy 董金玉
-	 * @updateTime 2016/11/30
-	 * @return List<AddressPO> 所有addressInfo载体
+	 * @lastChangedBy Harvey Gong
+	 * @updateTime 2016/12/2
+	 * @return List<AddressPO> 对应城市的商圈及其折扣
 	 */
 	public List<AddressPO> getAll(String city) {
 		sql = "SELECT * FROM address";
@@ -146,11 +146,9 @@ public class AddressDataHelperImpl implements AddressDataHelper {
 
 	/**
 	 * @author 董金玉
-	 * @lastChangedBy 董金玉
-	 * @updateTime 2016/11/30
-	 * @param discout 需要修改的折扣
-	 * @param city  城市
-	 * @param cycle 商圈
+	 * @lastChangedBy Harvey Gong
+	 * @updateTime 2016/12/2
+	 * @param addressPO 需要修改的一条记录
 	 * @return ResultMessage 是否成功修改折扣
 	 */
 	public ResultMessage modifyDiscout(AddressPO addressPO) {
