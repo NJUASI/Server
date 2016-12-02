@@ -4,9 +4,8 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
-import dataHelper.DataFactory;
 import dataHelper.HotelWorkerDataHelper;
-import dataHelperImpl.stub.DataFactoryImpl_Stub;
+import dataHelperImpl.DataFactoryImpl;
 import dataService.hotelWorkerDataService.HotelWorkerDataService;
 import po.HotelWorkerPO;
 import utilities.ResultMessage;
@@ -20,7 +19,7 @@ public class HotelWorkerDataServiceImpl extends UnicastRemoteObject implements H
 
 	private static final long serialVersionUID = 3434060152387200042L;
 
-	private DataFactory factory;
+	private DataFactoryImpl factory;
 
 	private HotelWorkerDataHelper hotelWorkerHelper;
 
@@ -31,7 +30,7 @@ public class HotelWorkerDataServiceImpl extends UnicastRemoteObject implements H
 	 */
 	public HotelWorkerDataServiceImpl() throws RemoteException {
 //		this.factory = DataFactoryImpl.getInstance();
-		this.factory = DataFactoryImpl_Stub.getInstance();
+		this.factory = DataFactoryImpl.getInstance();
 		this.hotelWorkerHelper = this.factory.getHotelWorkerDataHelper();
 	}
 

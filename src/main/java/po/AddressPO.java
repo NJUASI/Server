@@ -4,21 +4,24 @@ import java.io.Serializable;
 
 public class AddressPO implements Serializable{
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 3626389844005279945L;
 
 	//	酒店所属城市
 	private String city;
 	
 	//	酒店商圈
-	private String cycle;
+	private String circle;
 	
 	// 折扣
-	private Double discout;
+	private Double discount;
 	
-	public AddressPO(String city, String cycle,Double discout) {
+	public AddressPO(String city, String circle,Double discout) {
 		this.city = city;
-		this.cycle = cycle;
-		this.discout = discout;
+		this.circle = circle;
+		this.discount = discout;
 	}
 
 	public String getCity() {
@@ -29,19 +32,15 @@ public class AddressPO implements Serializable{
 		this.city = city;
 	}
 
-	public String getCycle() {
-		return cycle;
+	public Double getDiscount() {
+		return discount;
 	}
 
-	public void setCycle(String cycle) {
-		this.cycle = cycle;
+	public void setDiscount(Double discout) {
+		this.discount = discout;
 	}
 
-	public Double getDiscout() {
-		return discout;
-	}
-
-	public void setDiscout(Double discout) {
-		this.discout = discout;
+	public String getCircle() {
+		return circle;
 	}
 }

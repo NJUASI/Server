@@ -2,11 +2,12 @@ package dataHelperImpl;
 
 import dataHelper.AddressDataHelper;
 import dataHelper.CreditDataHelper;
-import dataHelper.DataFactory;
 import dataHelper.GuestDataHelper;
+import dataHelper.HotelFixedPromotionDataHelper;
 import dataHelper.HotelWorkerDataHelper;
 import dataHelper.MarketDataHelper;
 import dataHelper.OrderDataHelper;
+import dataHelper.SpecialSpanPromotionDataHelper;
 import dataHelper.WebManagerDataHelper;
 import dataHelper.WebMarketerDataHelper;
 
@@ -19,9 +20,9 @@ import dataHelper.WebMarketerDataHelper;
  * 以工厂的方式得到每个DataHelper的实例
  * Factory 单例化
  */
-public final class DataFactoryImpl implements DataFactory {
+public final class DataFactoryImpl{
 
-	private static DataFactory dataFactory = new DataFactoryImpl();
+	private static DataFactoryImpl dataFactory = new DataFactoryImpl();
 	
 	private AddressDataHelper addressDataHelper = new AddressDataHelperImpl(); 
 	
@@ -38,6 +39,10 @@ public final class DataFactoryImpl implements DataFactory {
 	private WebManagerDataHelper webManagerDataHelper = new WebManagerDataHelperImpl();
 	
 	private WebMarketerDataHelper webMarketerDataHelper = new WebMarketerDataHelperImpl();
+	
+	private HotelFixedPromotionDataHelper hotelFixedPromotionDataHelper = new HotelFixedPromotionDataHelperImpl();
+	
+	private SpecialSpanPromotionDataHelperImpl specialSpanPromotionDataHelper = new SpecialSpanPromotionDataHelperImpl();
 	
 	/**
 	 * @author charles
@@ -58,7 +63,7 @@ public final class DataFactoryImpl implements DataFactory {
 	 * 
 	 * 单例化，提供访问唯一对象的接口
 	 */
-	public static DataFactory getInstance() {
+	public static DataFactoryImpl getInstance() {
 		return dataFactory;
 	}
 	
@@ -68,7 +73,6 @@ public final class DataFactoryImpl implements DataFactory {
 	 * @updateTime 2016/11/30
 	 * @return 单例化的AddressDataHelper
 	 */
-	@Override
 	public AddressDataHelper getAddressDataHelper() {
 		return addressDataHelper;
 	}
@@ -79,7 +83,6 @@ public final class DataFactoryImpl implements DataFactory {
 	 * @updateTime 2016/11/30 
 	 * @return 单例化的CreditDataHelper
 	 */
-	@Override
 	public CreditDataHelper getCreditDataHelper() {
 		return creditDataHelper;
 	}
@@ -88,7 +91,6 @@ public final class DataFactoryImpl implements DataFactory {
 	 * 
 	 * @return 单例化的GuestDataHelper
 	 */
-	@Override
 	public GuestDataHelper getGuestDataHelper() {
 		return guestDataHelper;
 	}
@@ -99,7 +101,6 @@ public final class DataFactoryImpl implements DataFactory {
 	 * @updateTime 2016/11/30
 	 * @return 单例化的HotelWorkerDataHelper
 	 */
-	@Override
 	public HotelWorkerDataHelper getHotelWorkerDataHelper() {
 		return hotelWorkerDataHelper;
 	}
@@ -110,7 +111,6 @@ public final class DataFactoryImpl implements DataFactory {
 	 * @updateTime 2016/11/30
 	 * @return 单例化的MarketDataHelper
 	 */
-	@Override
 	public MarketDataHelper getMarketDataHelper() {
 		return marketDataHelper;
 	}
@@ -121,7 +121,6 @@ public final class DataFactoryImpl implements DataFactory {
 	 * @updateTime 2016/11/30
 	 * @return 单例化的OrderDataHelper
 	 */
-	@Override
 	public OrderDataHelper getOrderDataHelper() {
 		return orderDataHelper;
 	}
@@ -132,7 +131,6 @@ public final class DataFactoryImpl implements DataFactory {
 	 * @updateTime 2016/11/30
 	 * @return 单例化的WebManagerDataHelper
 	 */
-	@Override
 	public WebManagerDataHelper getWebManagerDataHelper() {
 		return webManagerDataHelper;
 	}
@@ -143,9 +141,17 @@ public final class DataFactoryImpl implements DataFactory {
 	 * @updateTime 2016/11/30
 	 * @return 单例化的WebMarketerDataHelper
 	 */
-	@Override
 	public WebMarketerDataHelper getWebMarketerDataHelper() {
 		return webMarketerDataHelper;
+	}
+	
+	
+	public HotelFixedPromotionDataHelper getHotelFixedPromotionDataHelper(){
+		return hotelFixedPromotionDataHelper;
+	}
+	
+	public SpecialSpanPromotionDataHelper getSpecialSpanPromotionDataHelper(){
+		return specialSpanPromotionDataHelper;
 	}
 
 }

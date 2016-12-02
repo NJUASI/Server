@@ -44,19 +44,20 @@ public interface AddressDataHelper {
 	
 	/**
 	 * @author 董金玉
-	 * @lastChangedBy 董金玉
-	 * @updateTime 2016/11/29
+	 * @param city 
+	 * @lastChangedBy Harvey Gong
+	 * @updateTime 2016/12/2
 	 * @return List<AddressPO> 获取所有商圈和城市
 	 */
-	List<AddressPO> getAll();
+	List<AddressPO> getAll(String city);
 	
 	/**
 	 * @author 董金玉
-	 * @lastChangedBy 董金玉
-	 * @updateTime 2016/11/29
+	 * @lastChangedBy Harvey Gong
+	 * @updateTime 2016/12/2
 	 * @return ResultMessage 是否成功修改折扣
 	 */
-	ResultMessage modifyDiscout(double discout,String city,String cycle);
+	ResultMessage modifyDiscout(AddressPO addressPO);
 	
 	/**
 	 * @author 董金玉
@@ -66,4 +67,5 @@ public interface AddressDataHelper {
 	 * @return 
 	 */
 	void close();
+
 }

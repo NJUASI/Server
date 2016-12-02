@@ -12,6 +12,21 @@ import utilities.ResultMessage;
  * @author 董金玉 lastChangedBy 董金玉 updateTime 2016/11/30
  *
  */
+/**
+ * @Description:TODO
+ * @author:Harvey Gong
+ * @time:2016年12月2日 下午9:03:00
+ */
+/**
+ * @Description:TODO
+ * @author:Harvey Gong
+ * @time:2016年12月2日 下午9:03:01
+ */
+/**
+ * @Description:TODO
+ * @author:Harvey Gong
+ * @time:2016年12月2日 下午9:03:03
+ */
 public class AddressDataHelperImpl_Stub implements AddressDataHelper {
 
 	/**
@@ -70,35 +85,6 @@ public class AddressDataHelperImpl_Stub implements AddressDataHelper {
 	/**
 	 * @author 董金玉
 	 * @lastChangedBy 董金玉
-	 * @updateTime 2016/12/1
-	 * @return List<AddressPO> 所有addressInfo载体
-	 */
-	public List<AddressPO> getAll() {
-		List<AddressPO> list = new ArrayList<AddressPO>();
-		list.add(new AddressPO("南京", "新街口", 0.9));
-		list.add(new AddressPO("武汉", "汉庭", 0.9));
-		return list;
-	}
-
-	/**
-	 * @author 董金玉
-	 * @lastChangedBy 董金玉
-	 * @updateTime 2016/12/1
-	 * @param discout
-	 *            需要修改的折扣
-	 * @param city
-	 *            城市
-	 * @param cycle
-	 *            商圈
-	 * @return ResultMessage 是否成功修改折扣
-	 */
-	public ResultMessage modifyDiscout(final double discout, final String city, final String cycle) {
-		return ResultMessage.SUCCESS;
-	}
-
-	/**
-	 * @author 董金玉
-	 * @lastChangedBy 董金玉
 	 * @updateTime 2016/11/30
 	 * @param
 	 * @return
@@ -125,5 +111,33 @@ public class AddressDataHelperImpl_Stub implements AddressDataHelper {
 			}
 		}
 		return list;
+	}
+
+	/**
+	 * @Description:根据所选城市，返回该城市所有的商圈及其折扣
+	 * @param city
+	 * @return
+	 * @exception:
+	 * @author: Harvey Gong
+	 * @time:2016年12月2日 下午9:03:06
+	 */
+	@Override
+	public List<AddressPO> getAll(String city) {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	/**
+	 * @Description:更新对应所传参数addressPO中的城市商圈的折扣
+	 * @param addressPO
+	 * @return
+	 * @exception:
+	 * @author: Harvey Gong
+	 * @time:2016年12月2日 下午9:03:49
+	 */
+	@Override
+	public ResultMessage modifyDiscout(AddressPO addressPO) {
+		// TODO 自动生成的方法存根
+		return null;
 	}
 }

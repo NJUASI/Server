@@ -93,14 +93,14 @@ public class AddressDataHelperImpl implements AddressDataHelper {
 	 * @param cycle 商圈
 	 * @return double 指定城市和商圈的折扣
 	 */
-	public double getDiscout(final String city, final String cycle) {
+	public double getDiscout(String city,String circle) {
 		sql = "SELECT address.discout FROM `address` WHERE city = ? AND cycle = ?";
 		double discout = 0;
 
 		try {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, city); //对应问号的位置
-			ps.setString(2, cycle);
+			ps.setString(2, circle);
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
@@ -119,7 +119,7 @@ public class AddressDataHelperImpl implements AddressDataHelper {
 	 * @updateTime 2016/11/30
 	 * @return List<AddressPO> 所有addressInfo载体
 	 */
-	public List<AddressPO> getAll() {
+	public List<AddressPO> getAll(String city) {
 		sql = "SELECT * FROM address";
 		final List<AddressPO> result = new ArrayList<AddressPO>();
 
@@ -148,14 +148,17 @@ public class AddressDataHelperImpl implements AddressDataHelper {
 	 * @param cycle 商圈
 	 * @return ResultMessage 是否成功修改折扣
 	 */
-	public ResultMessage modifyDiscout(final double discout, final String city, final String cycle) {
+	public ResultMessage modifyDiscout(AddressPO addressPO) {
+		String city = addressPO.getCity();
+		String circle = addressPO.getCircle();
+		double discount = addressPO.getDiscount();
 		sql = "UPDATE address SET address.discout = ? WHERE address.city = ? AND address.cycle = ?;";
 
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setDouble(1, discout); //此处硬编码对应问号的位置
+			ps.setDouble(1, discount); //此处硬编码对应问号的位置
 			ps.setString(2, city);
-			ps.setString(3, cycle);
+			ps.setString(3, circle);
 
 			ps.execute();
 		} catch (SQLException e) {
@@ -196,4 +199,5 @@ public class AddressDataHelperImpl implements AddressDataHelper {
 		}
 		return list;
 	}
+
 }
