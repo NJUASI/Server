@@ -57,6 +57,7 @@ public class AddressDataHelperImpl implements AddressDataHelper {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		JDBCUtil.close(rs, ps);
 		return this.deletDuplicate(result);
 	}
 
@@ -68,20 +69,24 @@ public class AddressDataHelperImpl implements AddressDataHelper {
 	 * @return List<String> 指定城市的所有商圈
 	 */
 	public List<String> getCycle(final String city) {
-		sql = "SELECT address.cycle FROM `address` WHERE city = ?";
+		sql = "SELECT * FROM address WHERE address.city = ?";
 		final List<String> result = new ArrayList<String>();
 
 		try {
+			System.out.println("this function");
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, city); //对应问号的位置
+			ps.setObject(1, city); //对应问号的位置
 			rs = ps.executeQuery();
-
+			
 			while (rs.next()) {
-				result.add(rs.getString(1)); //对应表项的位置
+				System.out.println(rs.getString(2));
+				result.add(rs.getString(2)); //对应表项的位置
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			System.out.println("this function so innormal");
 		}
+		JDBCUtil.close(rs, ps);
 		return result;
 	}
 
@@ -190,11 +195,14 @@ public class AddressDataHelperImpl implements AddressDataHelper {
 	private List<String> deletDuplicate(List<String> list) {
 
 		//判断相邻元素是否重复，重复则删除
-		for (int i = 0; i < list.size() - 1;) {
-			if (list.get(i).equals(list.get(i + 1))) {
-				list.remove(i + 1);
-			} else {
-				i++;
+		for (int i = 0; i < list.size();i++) {
+			for(int j = i+1;j<list.size();){
+				if(list.get(i).equals(list.get(j))){
+					list.remove(j);
+				}
+				else{
+					j++;
+				}
 			}
 		}
 		return list;
