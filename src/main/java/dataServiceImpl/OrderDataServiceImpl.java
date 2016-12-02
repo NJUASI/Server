@@ -3,16 +3,21 @@ package dataServiceImpl;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
+import dataHelper.DataFactory;
+import dataHelper.OrderDataHelper;
+import dataHelperImpl.DataFactoryImpl;
 import dataService.orderDataService.OrderDataService;
 import po.OrderGeneralPO;
 import po.OrderPO;
+import utilities.OrderState;
 import utilities.ResultMessage;
 
 /**
  * 
- * @author cuihua
+ * @author charles
  * lastChangedBy charles
  * updateTime 2016/11/29
  *
@@ -21,6 +26,8 @@ public class OrderDataServiceImpl extends UnicastRemoteObject implements OrderDa
 
 	private static final long serialVersionUID = 3434060152387200042L;
 	
+	private static OrderDataHelper orderDataHelper;
+	
 	/**
 	 * @author charles
 	 * @lastChangedBy charles
@@ -28,9 +35,24 @@ public class OrderDataServiceImpl extends UnicastRemoteObject implements OrderDa
 	 * @throws RemoteException RMI
 	 */
 	public OrderDataServiceImpl() throws RemoteException {
-		super();
+		if (orderDataHelper == null) {
+			init();
+		}
 	}
 
+	/**
+	 * 
+	 * @author charles
+	 * @lastChangedBy charles
+	 * @updateTime 2016/11/27
+	 * 
+	 * 单例初始化 orderDataHelper
+	 */
+	private void init() {
+		DataFactory dataFactory = DataFactoryImpl.getInstance();
+		orderDataHelper = dataFactory.getOrderDataHelper();
+	}
+	
 	/**
 	 * 
 	 * @author charles
@@ -42,7 +64,7 @@ public class OrderDataServiceImpl extends UnicastRemoteObject implements OrderDa
 	 */
 	@Override
 	public ResultMessage createOrder(final OrderPO order) throws RemoteException {
-		return null;
+		return orderDataHelper.add(order);
 	}
 
 	/**
@@ -55,7 +77,7 @@ public class OrderDataServiceImpl extends UnicastRemoteObject implements OrderDa
 	 */
 	@Override
 	public ResultMessage executeOrder(final String orderID) throws RemoteException {
-		return null;
+		return orderDataHelper.setState(orderID, OrderState.EXECUTED);
 	}
 
 	/**
@@ -68,7 +90,7 @@ public class OrderDataServiceImpl extends UnicastRemoteObject implements OrderDa
 	 */
 	@Override
 	public ResultMessage undoAbnormalOrder(final String orderID) throws RemoteException {
-		return null;
+		return orderDataHelper.setState(orderID, OrderState.CANCELLED);
 	}
 
 	/**
@@ -81,7 +103,7 @@ public class OrderDataServiceImpl extends UnicastRemoteObject implements OrderDa
 	 */
 	@Override
 	public ResultMessage undoNormalOrder(final String orderID) throws RemoteException {
-		return null;
+		return orderDataHelper.setState(orderID, OrderState.CANCELLED);
 	}
 	
 	/**
@@ -94,7 +116,7 @@ public class OrderDataServiceImpl extends UnicastRemoteObject implements OrderDa
 	 */
 	@Override
 	public OrderPO getOrderDetail(final String orderID) throws RemoteException {
-		return null;
+		return orderDataHelper.getSingleOrder(orderID);
 	}
 
 	/**
@@ -107,7 +129,14 @@ public class OrderDataServiceImpl extends UnicastRemoteObject implements OrderDa
 	 */
 	@Override
 	public List<OrderGeneralPO> getAllGuestOrderGeneral(final String guestID) throws RemoteException {
-		return null;
+		List<OrderPO> guestOrders = orderDataHelper.getAllOrderOfGuest(guestID);
+		List<OrderGeneralPO> result = new ArrayList<OrderGeneralPO>();
+		
+		for (OrderPO guestOrder : guestOrders) {
+			result.add(new OrderGeneralPO(guestOrder));
+		}
+		
+		return result;
 	}
 
 	/**
@@ -120,7 +149,14 @@ public class OrderDataServiceImpl extends UnicastRemoteObject implements OrderDa
 	 */
 	@Override
 	public List<OrderGeneralPO> getAllHotelOrderGeneral(final String hotelID) throws RemoteException {
-		return null;
+		List<OrderPO> hotelOrders = orderDataHelper.getAllOrderOfHotel(hotelID);
+		List<OrderGeneralPO> result = new ArrayList<OrderGeneralPO>();
+		
+		for (OrderPO hotelOrder : hotelOrders) {
+			result.add(new OrderGeneralPO(hotelOrder));
+		}
+		
+		return result;
 	}
 
 	/**
@@ -133,7 +169,17 @@ public class OrderDataServiceImpl extends UnicastRemoteObject implements OrderDa
 	 */
 	@Override
 	public List<OrderGeneralPO> getAllAbnormalOrderGeneral(final LocalDate date) throws RemoteException {
-		return null;
+		List<OrderPO> abnormalOrders = orderDataHelper.getAbnormal();
+		List<OrderGeneralPO> result = new ArrayList<OrderGeneralPO>();
+		
+		for (OrderPO abnormalOrder : abnormalOrders) {
+			LocalDate temp = abnormalOrder.getExpectExecuteTime().toLocalDate();
+			if (temp.getYear() == date.getYear() && temp.getMonth() == date.getMonth() && temp.getDayOfMonth() == date.getDayOfMonth()) {
+				result.add(new OrderGeneralPO(abnormalOrder));
+			}
+		}
+		
+		return result;
 	}
 
 	/**
@@ -145,7 +191,14 @@ public class OrderDataServiceImpl extends UnicastRemoteObject implements OrderDa
 	 */
 	@Override
 	public List<OrderGeneralPO> getAllAbnormalOrderGeneral() throws RemoteException {
-		return null;
+		List<OrderPO> abnormalOrders = orderDataHelper.getAbnormal();
+		List<OrderGeneralPO> result = new ArrayList<OrderGeneralPO>();
+		
+		for (OrderPO abnormalOrder : abnormalOrders) {
+			result.add(new OrderGeneralPO(abnormalOrder));
+		}
+		
+		return result;
 	}
 
 	/**
@@ -158,7 +211,17 @@ public class OrderDataServiceImpl extends UnicastRemoteObject implements OrderDa
 	 */
 	@Override
 	public List<OrderGeneralPO> getAllUnexecutedOrderGeneral(final LocalDate date) throws RemoteException {
-		return null;
+		List<OrderPO> unexecutedOrders = orderDataHelper.getUnexecuted();
+		List<OrderGeneralPO> result = new ArrayList<OrderGeneralPO>();
+		
+		for (OrderPO unexecutedOrder : unexecutedOrders) {
+			LocalDate temp = unexecutedOrder.getExpectExecuteTime().toLocalDate();
+			if (temp.getYear() == date.getYear() && temp.getMonth() == date.getMonth() && temp.getDayOfMonth() == date.getDayOfMonth()) {
+				result.add(new OrderGeneralPO(unexecutedOrder));
+			}
+		}
+		
+		return result;
 	}
 	
 	/**
@@ -171,7 +234,28 @@ public class OrderDataServiceImpl extends UnicastRemoteObject implements OrderDa
 	 */
 	@Override
 	public List<String> getBookedHotels(final String guestID) throws RemoteException {
-		return null;
+		List<OrderPO> guestOrders = orderDataHelper.getAllOrderOfGuest(guestID);
+		List<String> result = new ArrayList<String>();
+		
+		for (OrderPO guestOrder : guestOrders) {
+			if (guestOrder.getGuestID().equals(guestID)) {
+				String thisHotelID = guestOrder.getHotelID();
+				//遍历result中是否已加入此酒店
+				boolean alreadyHasThisHotel = false;
+				for (String string : result) {
+					if (string.equals(thisHotelID)) {
+						alreadyHasThisHotel = true;
+						break;
+					}
+				}
+				
+				if (alreadyHasThisHotel == false) {
+					result.add(thisHotelID);
+				}
+			}
+		}
+		
+		return result;
 	}
 
 }

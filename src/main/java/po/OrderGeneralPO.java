@@ -38,6 +38,8 @@ public class OrderGeneralPO implements Serializable{
 	
 	// 订单状态
 	private OrderState state;
+	
+	public OrderGeneralPO(){}
 
 	public OrderGeneralPO(String orderID, String guestID, String hotelID, String hotelName, String hotelAddress,
 			double price, LocalDateTime expectExecuteTime, LocalDateTime expectLeaveTime, OrderState state) {
@@ -53,6 +55,18 @@ public class OrderGeneralPO implements Serializable{
 		this.state = state;
 	}
 
+	public OrderGeneralPO(OrderPO orderPO) {
+		this.orderID = orderPO.getOrderID();
+		this.guestID = orderPO.getGuestID();
+		this.hotelID = orderPO.getHotelID();
+		this.hotelName = orderPO.getHotelName();
+		this.hotelAddress = orderPO.getHotelAddress();
+		this.price = orderPO.getPrice();
+		this.expectExecuteTime = orderPO.getExpectExecuteTime();
+		this.expectLeaveTime = orderPO.getExpectLeaveTime();
+		this.state = orderPO.getState();
+	}
+	
 	public String getOrderID() {
 		return orderID;
 	}

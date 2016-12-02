@@ -1,6 +1,5 @@
 package dataHelper;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import po.OrderPO;
@@ -76,10 +75,9 @@ public interface OrderDataHelper {
 	 * @author 董金玉
 	 * @lastChangedBy 董金玉
 	 * @updateTime 2016/11/29
-	 * @param date  需要查询的日期  
 	 * @return List<OrderPO> 据date获得的所有异常orderInfo载体
 	 */
-	List<OrderPO> getAbnormal(LocalDate date);
+	List<OrderPO> getAbnormal();
 	
 	/**
 	 * @author 董金玉
@@ -88,7 +86,7 @@ public interface OrderDataHelper {
 	 * @param date  需要查询的日期  
 	 * @return List<OrderPO> 据date获得的所有未执行orderInfo载体
 	 */
-	List<OrderPO> getUnexecuted(LocalDate date);
+	List<OrderPO> getUnexecuted();
 	
 	/**
 	 * @author 董金玉

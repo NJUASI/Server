@@ -28,6 +28,8 @@ public class CreditPO implements Serializable{
 	//	变化原因 即动作
 	private String reason;
 	
+	public CreditPO(){}
+	
 	public CreditPO(String guestID, LocalDateTime time, String orderID, double previousCredit, double afterCredit, String reason) {
 		this.guestID = guestID;
 		this.time = time;

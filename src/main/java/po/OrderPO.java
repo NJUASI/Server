@@ -52,6 +52,12 @@ public class OrderPO implements Serializable{
 	//	评论
 	private String comment;
 	
+	// 评分
+	private double score;
+	
+	public OrderPO(){
+		this.orderGeneralPO = new OrderGeneralPO();
+	}
 
 	public OrderPO(String orderID, String guestID, String hotelID, String hotelName, String hotelAddress, 
 			double previousPrice, double price, LocalDateTime createTime, LocalDateTime checkInTime,
@@ -78,7 +84,7 @@ public class OrderPO implements Serializable{
 
 	public OrderPO(OrderGeneralPO orderGeneralPO, double previousPrice, LocalDateTime createTime, LocalDateTime checkInTime, 
 			LocalDateTime checkOutTime, RoomType roomType, int roomNumCount, String roomNumber, String name, 
-			String phone, String message,String comment) {
+			String phone, String message,String comment,double score) {
 		super();
 		this.orderGeneralPO = orderGeneralPO;
 		
@@ -93,6 +99,7 @@ public class OrderPO implements Serializable{
 		this.phone = phone;
 		this.message = message;
 		this.comment = comment;
+		this.score = score;
 	}
 	
 	public String getOrderID() {
@@ -100,7 +107,7 @@ public class OrderPO implements Serializable{
 	}
 
 	public void setOrderID(String orderID) {
-		this.setOrderID(orderID);
+		orderGeneralPO.setOrderID(orderID);
 	}
 
 	public String getGuestID() {
@@ -108,7 +115,7 @@ public class OrderPO implements Serializable{
 	}
 
 	public void setGuestID(String guestID) {
-		this.setGuestID(guestID);
+		orderGeneralPO.setGuestID(guestID);
 	}
 
 	public String getHotelID() {
@@ -116,7 +123,7 @@ public class OrderPO implements Serializable{
 	}
 
 	public void setHotelID(String hotelID) {
-		this.setHotelID(hotelID);
+		orderGeneralPO.setHotelID(hotelID);
 	}
 
 	public String getHotelName() {
@@ -124,7 +131,7 @@ public class OrderPO implements Serializable{
 	}
 
 	public void setHotelName(String hotelName) {
-		this.setHotelName(hotelName);
+		orderGeneralPO.setHotelName(hotelName);
 	}
 
 	public String getHotelAddress() {
@@ -132,7 +139,7 @@ public class OrderPO implements Serializable{
 	}
 
 	public void setHotelAddress(String hotelAddress) {
-		this.setHotelAddress(hotelAddress);
+		orderGeneralPO.setHotelAddress(hotelAddress);
 	}
 
 	public double getPrice() {
@@ -140,7 +147,7 @@ public class OrderPO implements Serializable{
 	}
 
 	public void setPrice(double price) {
-		this.setPrice(price);
+		orderGeneralPO.setPrice(price);
 	}
 
 	public double getPreviousPrice() {
@@ -156,15 +163,15 @@ public class OrderPO implements Serializable{
 	}
 
 	public void setExpectExecuteTime(LocalDateTime expectExecuteTime) {
-		this.setExpectExecuteTime(expectExecuteTime);
+		orderGeneralPO.setExpectExecuteTime(expectExecuteTime);
 	}
 
 	public OrderState getState() {
 		return orderGeneralPO.getState();
 	}
 
-	public void setState(String state) {
-		this.setState(state);
+	public void setState(OrderState state) {
+		orderGeneralPO.setState(state);
 	}
 	
 	public LocalDateTime getExpectLeaveTime() {
@@ -172,10 +179,8 @@ public class OrderPO implements Serializable{
 	}
 
 	public void setExpectLeaveTime(LocalDateTime expectLeaveTime) {
-		this.setExpectLeaveTime(expectLeaveTime);
+		orderGeneralPO.setExpectLeaveTime(expectLeaveTime);
 	}
-	
-	
 	
 	public LocalDateTime getCreateTime() {
 		return createTime;
@@ -199,6 +204,14 @@ public class OrderPO implements Serializable{
 
 	public void setCheckOutTime(LocalDateTime checkOutTime) {
 		this.checkOutTime = checkOutTime;
+	}
+
+	public double getScore() {
+		return score;
+	}
+
+	public void setScore(double score) {
+		this.score = score;
 	}
 
 	public RoomType getRoomType() {
