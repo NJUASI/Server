@@ -50,6 +50,8 @@ public class GuestDataServiceImpl extends UnicastRemoteObject implements GuestDa
 	 */
 	public GuestPO getSingleGuest(String guestID) throws RemoteException {
 		
+		if(guestID==null||guestID==""||guestID.length()!=10){return null;} //传入的ID无效，返回空
+		
 		GuestPO guestPO = guestHelper.getSingle(guestID);
 		//从数据库中得到一个按ID索引的PO，若不存在则为空
 		return guestPO;
@@ -77,6 +79,9 @@ public class GuestDataServiceImpl extends UnicastRemoteObject implements GuestDa
 	 * @return List<CreditPO> 指定客户ID的所有creditInfo载体
 	 */
 	public List<CreditPO> getAllCreditDetail(String guestID) throws RemoteException {
+		
+		if(guestID==null||guestID==""||guestID.length()!=10){return null;} //传入的ID无效，返回空
+		
 		List<CreditPO> list = this.creditHelper.getAll(guestID);
 		// 从数据库中得到所有creditPO，若不存在则为空
 		if(list.isEmpty()){return null;}
@@ -87,11 +92,18 @@ public class GuestDataServiceImpl extends UnicastRemoteObject implements GuestDa
 	/**
 	 * @author 董金玉
 	 * @lastChangedBy 董金玉
-	 * @updateTime 2016/12/1
+	 * @updateTime 2016/12/2
 	 * @param newGuestPO 需要添加的guestInfo载体
 	 * @return List<CreditPO> 指定客户ID的所有creditInfo载体
 	 */
 	public ResultMessage add(GuestPO newGuestPO) throws RemoteException {
+		
+		if(newGuestPO==null){return ResultMessage.FAIL;} //传入的参数为空，返回失败
+		
+		GuestPO guestPO = this.guestHelper.getSingle(newGuestPO.getGuestID());
+		//从数据库中得到guestPO，若不存在则为空
+		if(guestPO!=null){return ResultMessage.FAIL;} //根据ID索引找到对应ID指定项，则不能添加
+		
 		return this.guestHelper.add(newGuestPO);
 	}
 
@@ -119,11 +131,18 @@ public class GuestDataServiceImpl extends UnicastRemoteObject implements GuestDa
 	/**
 	 * @author 董金玉
 	 * @lastChangedBy 董金玉
-	 * @updateTime 2016/12/1
+	 * @updateTime 2016/12/2
 	 * @param guestPO 需要修改的guestInfo载体
 	 * @return ResultMessage 是否成功修改客户信息
 	 */
 	public ResultMessage modify(GuestPO guestPO) throws RemoteException {
+		
+		GuestPO tempGuestPO = this.guestHelper.getSingle(guestPO.getGuestID());
+		//从数据库中得到guestPO，若不存在则为空
+		if(tempGuestPO==null){
+			return ResultMessage.FAIL; //为空则返回失败
+		}
+		
 		return this.guestHelper.modify(guestPO);
 	}
 

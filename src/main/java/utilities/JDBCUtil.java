@@ -17,7 +17,7 @@ public class JDBCUtil {
 		pros = new Properties();
 		
 		try {
-			pros.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("dataBase"));
+			pros.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("dataBase.properties"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
