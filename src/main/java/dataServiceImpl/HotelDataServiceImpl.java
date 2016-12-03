@@ -7,13 +7,13 @@ import java.util.List;
 import dataService.hotelDataService.HotelDataService;
 import po.CheckInPO;
 import po.CheckOutPO;
-import po.EvaluationPO;
+import po.HotelEvaluationPO;
 import po.HotelGeneralPO;
 import po.HotelPO;
 import po.RemainRoomInfoPO;
 import po.RoomInfoPO;
-import utilities.Address;
 import utilities.ResultMessage;
+import vo.AddressVO;
 
 public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDataService{
 
@@ -64,16 +64,16 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 	}
 
 	@Override
-	public List<EvaluationPO> getEvaluations(String hotelID) throws RemoteException {
+	public List<HotelEvaluationPO> getEvaluations(String hotelID) throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
 
-	@Override
-	public ResultMessage updateEvaluation(EvaluationPO evaluationPO) throws RemoteException {
-		// TODO 自动生成的方法存根
-		return null;
-	}
+//	@Override
+//	public ResultMessage updateEvaluation(EvaluationPO evaluationPO) throws RemoteException {
+//		// TODO 自动生成的方法存根
+//		return null;
+//	}
 
 	@Override
 	public List<RemainRoomInfoPO> getRemainRoomInfo(String hotelID) throws RemoteException {
@@ -89,7 +89,7 @@ public class HotelDataServiceImpl extends UnicastRemoteObject implements HotelDa
 	}
 	
 	@Override
-	public List<HotelGeneralPO> getHotelGeneralList(Address address) throws RemoteException {
+	public List<HotelGeneralPO> getHotelGeneralList(AddressVO addressVO) throws RemoteException {
 		// TODO 自动生成的方法存根
 		return null;
 	}
