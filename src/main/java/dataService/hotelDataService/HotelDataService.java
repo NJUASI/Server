@@ -6,13 +6,13 @@ import java.util.List;
 
 import po.CheckInPO;
 import po.CheckOutPO;
-import po.EvaluationPO;
+import po.HotelEvaluationPO;
 import po.HotelGeneralPO;
 import po.HotelPO;
 import po.RemainRoomInfoPO;
 import po.RoomInfoPO;
-import utilities.Address;
 import utilities.ResultMessage;
+import vo.AddressVO;
 
 public interface HotelDataService extends Remote{
 
@@ -34,10 +34,10 @@ public interface HotelDataService extends Remote{
 	
 	public HotelPO getHotelDetail(String hotelID) throws RemoteException;
 
-	public List<EvaluationPO> getEvaluations(String hotelID) throws RemoteException;
+	public List<HotelEvaluationPO> getEvaluations(String hotelID) throws RemoteException;
 	
-	public ResultMessage updateEvaluation (EvaluationPO evaluationPO) throws RemoteException;
+//	public ResultMessage updateEvaluation (EvaluationPO evaluationPO) throws RemoteException;
 
-	public List<HotelGeneralPO> getHotelGeneralList(Address address) throws RemoteException;
+	public List<HotelGeneralPO> getHotelGeneralList(AddressVO addressVO) throws RemoteException;
 
 }
